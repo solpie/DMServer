@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/dm-pages",
+      "handler": "dm-page.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/dm-pages/count",
+      "handler": "dm-page.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/dm-pages/:id",
+      "handler": "dm-page.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/dm-pages",
+      "handler": "dm-page.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/dm-pages/:id",
+      "handler": "dm-page.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/dm-pages/:id",
+      "handler": "dm-page.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dm_pages",
+  "info": {
+    "name": "dm_page"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "data": {
+      "type": "json"
+    },
+    "date": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
