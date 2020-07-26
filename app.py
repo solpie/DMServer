@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
-from service import DanmakuSrv
+from service import DanmakuSrv,DanmakuModel
+import threading
 
 import json
 
@@ -31,8 +32,23 @@ def save_dm():
     dmk_list = j['dmk_list']
     dmk_srv.save_danmaku(dmk_list)
     return jsonify({'msg':'ok'})
+import time
+def thread_polling(name):
+    # http post data
+    # record timestamp filer save
+    # 3 sec send 10 page
+    while(1):
+        print('sec:')
+        time.sleep(5)
+    pass
 
-dmk_srv.merge_page()
+dm_page = DanmakuModel.select().limit(4)
+print('dm count page',len(dm_page))
+dmk_srv.merge_page(dm_page)
 
 if __name__ == "__main__":
+    # x = threading.Thread(target=thread_polling, args=(1,))
+    # x.start()
+
+    print([1,2,3][1:])
     app.run(debug=True, port=8888)
