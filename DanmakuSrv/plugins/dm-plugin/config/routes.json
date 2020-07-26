@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "handler": "dm-plugin.index",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/",
+      "handler": "dm-plugin.index_POST",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,20 +1,22 @@
 {
   "kind": "collectionType",
-  "collectionName": "dm_pages",
+  "collectionName": "plugin_confs",
   "info": {
-    "name": "dm-page"
+    "name": "plugin-conf"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
+    "info": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
     "data": {
       "type": "json"
-    },
-    "date": {
-      "type": "string",
-      "required": true
     }
   }
 }

@@ -2,6 +2,13 @@
 top_conf= {"init":False,"top_dm_arr":['','','']}
 tail_conf = {"init":False,"cursor_arr":['','','']}
 
+
+def print_dm(*arg):
+    try:
+        print(*arg)
+    except Exception as e:
+        pass
+
 def find_cursor_in_new_page(cursor_arr,dm_arr,from_idx):
     # from bottom   
     same_count = 0
@@ -30,7 +37,7 @@ def find_new_page(dm_arr):
             # find cursor in new page
             # print('---cursor_arr')
             for dm in cursor_arr:
-                print(dm)
+                print_dm(dm)
             new_idx = len(dm_arr)
 
             while(new_idx>0):

@@ -64,11 +64,10 @@ def is_new_page(dm_arr):
         top_conf['init'] = True
         is_new = True
         pass
-    else:
-        if len(dm_arr)>0:
-            if dm_arr[0]!=top_dm_arr[0]:
-                is_new = True
-    top_dm_arr[0]=dm_arr[0]
+    if len(dm_arr)>0:
+        if dm_arr[0]!=top_dm_arr[0]:
+            is_new = True
+        top_dm_arr[0]=dm_arr[0]
     return is_new
 
 ##find tail dm
