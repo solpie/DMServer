@@ -23,11 +23,16 @@ module.exports = {
     ctx.send({
       message: "ok",
       stat: get_plugin_srv().stat_pk,
-      conf:get_plugin_srv().douyin_pk_conf['data']
+      conf: get_plugin_srv().douyin_pk_conf["data"],
     });
   },
   POST_update_conf: async (ctx) => {
-    await  get_plugin_srv().boot();
+    await get_plugin_srv().boot();
+    ctx.send({
+      message: "ok",
+      stat: get_plugin_srv().stat_pk,
+      conf: get_plugin_srv().douyin_pk_conf["data"],
+    });
   },
   index_POST: async (ctx) => {
     let { dmk_list } = ctx.request.body;
@@ -48,7 +53,7 @@ module.exports = {
     if (new_dm_arr.length) {
       let new_page = {
         data: { dm_arr: new_dm_arr },
-        date:  get_plugin_srv().today_date,
+        date: get_plugin_srv().today_date,
       };
       entry = await strapi.query("dm-page").create(new_page);
       get_plugin_srv().calc_page(new_page);
