@@ -51,9 +51,9 @@ module.exports = {
     }
     let entry;
     if (new_dm_arr.length) {
+      // let timestamp_sec = Math.floor(new Date().getTime() / 1000);
       let new_page = {
         data: { dm_arr: new_dm_arr },
-        date: get_plugin_srv().today_date,
       };
       entry = await strapi.query("dm-page").create(new_page);
       get_plugin_srv().calc_page(new_page);

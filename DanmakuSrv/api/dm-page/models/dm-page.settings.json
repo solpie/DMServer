@@ -11,10 +11,6 @@
   "attributes": {
     "data": {
       "type": "json"
-    },
-    "date": {
-      "type": "string",
-      "required": true
     }
   }
 }

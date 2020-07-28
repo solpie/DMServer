@@ -68,7 +68,7 @@ module.exports = {
     if (entry) {
       let dm_pages = await strapi
         .query("dm-page")
-        .find({ date: this.today_date });
+        .find({ date: this.today_date, date_gt: "2020-07-26T13:48:30.265Z" });
       if (dm_pages.length) {
         for (let page of dm_pages) {
           this.calc_page(page);
