@@ -17,6 +17,15 @@
     },
     "data": {
       "type": "json"
+    },
+    "stat_from": {
+      "type": "string"
+    },
+    "rpc_server_url": {
+      "type": "string"
+    },
+    "conf_updated_at": {
+      "type": "string"
     }
   }
 }

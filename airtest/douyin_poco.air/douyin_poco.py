@@ -45,7 +45,7 @@ def get_dm():
 
 #     print('top_dm',dmk_list[0])
     
-    if is_new_page(dmk_list):
+    if dmk_list and is_new_page(dmk_list):
         new_dm_arr = find_new_page(dmk_list)
         if len(new_dm_arr)>0:
             print("new_dm_arr",len(new_dm_arr))
@@ -57,6 +57,8 @@ def get_dm():
 while(1):
     get_dm()
     sleep(3)
+
+
 
 
 

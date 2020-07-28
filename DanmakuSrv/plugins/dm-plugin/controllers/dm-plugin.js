@@ -44,7 +44,7 @@ module.exports = {
         if (a.length > 1) {
           let username = a.shift();
           let text = a.join("：");
-          strapi.log.info(username, text);
+          strapi.log.info(`::${username}: `, text);
           new_dm_arr.push({ username, text });
         }
       }
@@ -58,6 +58,7 @@ module.exports = {
       entry = await strapi.query("dm-page").create(new_page);
       strapi.log.info('new dm-page created_at',entry['created_at'])
       get_plugin_srv().calc_page(new_page);
+      strapi.log.info("stat_pk",get_plugin_srv().stat_pk);
     }
     // Send 200 `ok`
     ctx.send({
