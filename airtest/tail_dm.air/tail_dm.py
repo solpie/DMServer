@@ -65,6 +65,8 @@ def find_new_page(dm_arr):
 
 def is_new_page(dm_arr):
     global top_conf
+    if not len(dm_arr):
+        return True
     is_new = False
     top_dm_arr = top_conf['top_dm_arr']
     if not top_conf['init']:

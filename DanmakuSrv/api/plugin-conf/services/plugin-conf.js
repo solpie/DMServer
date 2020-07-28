@@ -36,6 +36,8 @@ module.exports = {
       this.today_date = `${year}-${month_str}-${day_str}`;
       this.douyin_pk_conf = entry;
       this.stat_pk = {};
+      this.today_date = (new Date()).toISOString()
+     
       strapi.log.info("dm-plugin today", this.today_date);
       strapi.log.info("strapi.services", strapi.services);
       await this.calc_pk();
@@ -66,15 +68,21 @@ module.exports = {
       .find({ name: "douyin-pk" });
 
     if (entry) {
+      let find_from = this.today_date
+      find_from = '2020-07-28T05:47:32.011Z'
       let dm_pages = await strapi
         .query("dm-page")
-        .find({ date: this.today_date, date_gt: "2020-07-26T13:48:30.265Z" });
+        .find({created_at_gt: find_from});
       if (dm_pages.length) {
         for (let page of dm_pages) {
           this.calc_page(page);
         }
         // this.stat_pk = stat_pk;
         strapi.log.info("stat_pk", this.stat_pk);
+      }
+      else{
+        strapi.log.info("stat_pk",'no dm-page from',find_from);
+
       }
     }
   },

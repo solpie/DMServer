@@ -56,6 +56,7 @@ module.exports = {
         data: { dm_arr: new_dm_arr },
       };
       entry = await strapi.query("dm-page").create(new_page);
+      strapi.log.info('new dm-page created_at',entry['created_at'])
       get_plugin_srv().calc_page(new_page);
     }
     // Send 200 `ok`
