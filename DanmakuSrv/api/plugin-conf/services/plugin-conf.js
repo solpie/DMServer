@@ -13,13 +13,13 @@ module.exports = {
   stat_pk: {},
   update_conf: async function (data) {
     let _this = this
-
-    // strapi.log.info('update active cond', data['option_conf']['conf_updated_at'])
+    // return
+    // strapi.log.info('update active cond', _this.douyin_pk_conf)
     if (data && _this.douyin_pk_conf['conf_updated_at'] !== data['option_conf']['conf_updated_at']) {
       if (data['option_conf']) {
         _this.douyin_pk_conf['data']['option_arr'] = data['option_conf']['option_arr']
       }
-      _this.douyin_pk_conf['stat_from'] =  data['option_conf']['stat_from']
+      _this.douyin_pk_conf['stat_from'] = data['option_conf']['stat_from']
       _this.douyin_pk_conf['conf_updated_at'] = data['option_conf']['conf_updated_at']
       await strapi.query("plugin-conf").update({ id: _this.douyin_pk_conf['id'] }, _this.douyin_pk_conf)
       strapi.log.info('update active cond', _this.douyin_pk_conf['data'])
@@ -69,7 +69,10 @@ module.exports = {
 
   init_ws: async function (url) {
     if (url) {
-      strapi.log.info('init_ws', url)
+      // i
+      if (url.charAt(url.length - 1) === '/')
+        url = url.substr(start, length)
+      strapi.log.info('conf server url:', url)
       let _this = this
       setInterval(async function () {
         // heart polling
@@ -104,7 +107,7 @@ module.exports = {
       this.stat_pk = {};
       this.today_date = (new Date()).toISOString()
 
-      strapi.log.info("dm-plugin today", this.today_date);
+      // strapi.log.info("dm-plugin today", this.today_date);
       // strapi.log.info("strapi.services", strapi.services);
       await this.calc_pk();
     }
@@ -116,20 +119,22 @@ module.exports = {
         if (!stat_pk[query]) stat_pk[query] = 0;
         if (text.includes(query)) {
           stat_pk[query]++;
-          strapi.log.info("calc_pk", query, stat_pk[query]);
+          // strapi.log.info("calc_pk", query, stat_pk[query]);
         }
       }
 
     };
     const { data } = page;
-    if (data && data["dm_arr"])
+    if (data && data["dm_arr"]) {
       for (let dm of data["dm_arr"]) {
         //   strapi.log.info("calc_pk", dm);
         const { text } = dm;
         find_query(text, this.douyin_pk_conf, this.stat_pk);
       }
+    }
+
   },
-  calc_pk: async function () {
+  calc_pk: async function (start=0) {
     const [entry] = await strapi
       .query("plugin-conf")
       .find({ name: "douyin-pk" });
@@ -138,17 +143,25 @@ module.exports = {
       let find_from = entry['stat_from']
       let dm_pages = await strapi
         .query("dm-page")
-        .find({ created_at_gt: find_from });
+        .find({ created_at_gt: find_from ,_start:start});
       if (dm_pages.length) {
+        strapi.log.info("option_arr", this.douyin_pk_conf["data"]["option_arr"]);
+
         for (let page of dm_pages) {
           this.calc_page(page);
         }
         // this.stat_pk = stat_pk;
-        strapi.log.info("stat_pk", this.stat_pk);
+        strapi.log.info(":::stat_from", find_from,'start',start);
+        strapi.log.info(":::dm-pages count:", dm_pages.length);
+        strapi.log.info(":::stat_", this.stat_pk);
+        // strapi.log.info(":::stat_", this.stat_pk);
+        if(dm_pages.length===100)
+        {
+          this.calc_pk(start+100)
+        }
       }
       else {
         strapi.log.info("stat_pk", 'no dm-page from', find_from);
-
       }
     }
   },
