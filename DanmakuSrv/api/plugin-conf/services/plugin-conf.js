@@ -78,7 +78,7 @@ module.exports = {
         // heart polling
         // get active conf
         await request(url + '/srv/dm-plugin/get', async function (err, res, body) {
-          strapi.log.info('[get]',url + '/srv/dm-plugin/get')
+          strapi.log.info('[get]', url + '/srv/dm-plugin/get')
           if (_this.douyin_pk_conf) {
             const data = JSON.parse(body)
             await _this.update_conf(data)
@@ -117,7 +117,7 @@ module.exports = {
       for (let option of pk_conf["data"]["option_arr"]) {
         const { query } = option;
         if (!stat_pk[query]) stat_pk[query] = 0;
-        if (query&&text.includes(query)) {
+        if (query && text.includes(query)) {
           stat_pk[query]++;
           // strapi.log.info("calc_pk", query, stat_pk[query]);
         }
@@ -134,7 +134,7 @@ module.exports = {
     }
 
   },
-  calc_pk: async function (start=0) {
+  calc_pk: async function (start = 0) {
     const [entry] = await strapi
       .query("plugin-conf")
       .find({ name: "douyin-pk" });
@@ -143,7 +143,7 @@ module.exports = {
       let find_from = entry['stat_from']
       let dm_pages = await strapi
         .query("dm-page")
-        .find({ created_at_gt: find_from ,_start:start});
+        .find({ created_at_gt: find_from, _start: start });
       if (dm_pages.length) {
         strapi.log.info("option_arr", this.douyin_pk_conf["data"]["option_arr"]);
 
@@ -151,13 +151,12 @@ module.exports = {
           this.calc_page(page);
         }
         // this.stat_pk = stat_pk;
-        strapi.log.info(":::stat_from", find_from,'start',start);
+        strapi.log.info(":::stat_from", find_from, 'start', start);
         strapi.log.info(":::dm-pages count:", dm_pages.length);
         strapi.log.info(":::stat_", this.stat_pk);
         // strapi.log.info(":::stat_", this.stat_pk);
-        if(dm_pages.length===100)
-        {
-          this.calc_pk(start+100)
+        if (dm_pages.length === 100) {
+          this.calc_pk(start + 100)
         }
       }
       else {
