@@ -78,7 +78,7 @@ module.exports = {
         // heart polling
         // get active conf
         await request(url + '/srv/dm-plugin/get', async function (err, res, body) {
-          // strapi.log.info('get conf', url,body)
+          strapi.log.info('[get]',url + '/srv/dm-plugin/get')
           if (_this.douyin_pk_conf) {
             const data = JSON.parse(body)
             await _this.update_conf(data)
