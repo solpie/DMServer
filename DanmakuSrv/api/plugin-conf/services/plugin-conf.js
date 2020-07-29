@@ -117,7 +117,7 @@ module.exports = {
       for (let option of pk_conf["data"]["option_arr"]) {
         const { query } = option;
         if (!stat_pk[query]) stat_pk[query] = 0;
-        if (text.includes(query)) {
+        if (query&&text.includes(query)) {
           stat_pk[query]++;
           // strapi.log.info("calc_pk", query, stat_pk[query]);
         }
