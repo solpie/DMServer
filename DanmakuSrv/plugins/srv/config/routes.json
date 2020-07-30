@@ -2,7 +2,7 @@
   "routes": [
     {
       "method": "POST",
-      "path": "/dm-page/",
+      "path": "/:plugin_name/:handler",
       "handler": "srv.index_post",
       "config": {
         "policies": []
@@ -10,7 +10,7 @@
     },
     {
       "method": "GET",
-      "path": "/get/",
+      "path": "/:plugin_name/:handler",
       "handler": "srv.index",
       "config": {
         "policies": []

@@ -54,7 +54,7 @@ var strapi_ = strapi;
 //# sourceMappingURL=strapi.js.map
 
 var strapi$1 = strapi_;
-var request = require("request");
+var request = require('request');
 var DouyinStat = /** @class */ (function () {
     function DouyinStat() {
         this.init = false;
@@ -70,12 +70,12 @@ var DouyinStat = /** @class */ (function () {
                     case 0:
                         strapi_.log.info('douyin stat boot');
                         return [4 /*yield*/, strapi$1
-                                .query("plugin-conf")
-                                .find({ name: "douyin-pk" })];
+                                .query('plugin-conf')
+                                .find({ name: 'douyin-pk' })];
                     case 1:
                         entry = (_a.sent())[0];
                         if (!entry) return [3 /*break*/, 3];
-                        strapi$1.log.info("dm service index", entry.name);
+                        strapi$1.log.info('dm service index', entry.name);
                         this.init_ws(entry['rpc_server_url']);
                         this.douyin_pk_conf = entry;
                         this.stat_pk = {};
@@ -151,13 +151,19 @@ var DouyinStat = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!(data && this.douyin_pk_conf['conf_updated_at'] !== data['option_conf']['conf_updated_at'])) return [3 /*break*/, 2];
+                        if (!(data &&
+                            this.douyin_pk_conf['conf_updated_at'] !==
+                                data['option_conf']['conf_updated_at'])) return [3 /*break*/, 2];
                         if (data['option_conf']) {
-                            this.douyin_pk_conf['data']['option_arr'] = data['option_conf']['option_arr'];
+                            this.douyin_pk_conf['data']['option_arr'] =
+                                data['option_conf']['option_arr'];
                         }
                         this.douyin_pk_conf['stat_from'] = data['option_conf']['stat_from'];
-                        this.douyin_pk_conf['conf_updated_at'] = data['option_conf']['conf_updated_at'];
-                        return [4 /*yield*/, strapi$1.query("plugin-conf").update({ id: this.douyin_pk_conf['id'] }, this.douyin_pk_conf)];
+                        this.douyin_pk_conf['conf_updated_at'] =
+                            data['option_conf']['conf_updated_at'];
+                        return [4 /*yield*/, strapi$1
+                                .query('plugin-conf')
+                                .update({ id: this.douyin_pk_conf['id'] }, this.douyin_pk_conf)];
                     case 1:
                         _a.sent();
                         strapi$1.log.info('update active cond', this.douyin_pk_conf['data']);
@@ -191,10 +197,10 @@ var DouyinStat = /** @class */ (function () {
                         strapi$1.log.info('new stat', this.stat_pk);
                         return [4 /*yield*/, request({
                                 url: url + '/srv/dm-plugin/stat',
-                                method: "POST",
+                                method: 'POST',
                                 json: true,
                                 headers: {
-                                    "content-type": "application/json",
+                                    'content-type': 'application/json'
                                 },
                                 body: { option_conf: { option_arr: remote_option_arr } }
                             }, function (error, response, body) {
@@ -215,38 +221,38 @@ var DouyinStat = /** @class */ (function () {
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0: return [4 /*yield*/, strapi$1
-                            .query("plugin-conf")
-                            .find({ name: "douyin-pk" })];
+                            .query('plugin-conf')
+                            .find({ name: 'douyin-pk' })];
                     case 1:
                         entry = (_c.sent())[0];
                         if (!entry) return [3 /*break*/, 3];
                         find_from = entry['stat_from'];
                         return [4 /*yield*/, strapi$1
-                                .query("dm-page")
+                                .query('dm-page')
                                 .find({ created_at_gt: find_from, _start: start })];
                     case 2:
                         dm_pages = _c.sent();
                         if (dm_pages.length) {
-                            strapi$1.log.info("active conf option_arr");
-                            for (_i = 0, _a = this.douyin_pk_conf["data"]["option_arr"]; _i < _a.length; _i++) {
+                            strapi$1.log.info('active conf option_arr');
+                            for (_i = 0, _a = this.douyin_pk_conf['data']['option_arr']; _i < _a.length; _i++) {
                                 option = _a[_i];
-                                strapi$1.log.info("--option", option);
+                                strapi$1.log.info('--option', option);
                             }
                             for (_b = 0, dm_pages_1 = dm_pages; _b < dm_pages_1.length; _b++) {
                                 page = dm_pages_1[_b];
                                 this.calc_page(page);
                             }
                             // this.stat_pk = stat_pk;
-                            strapi$1.log.info(":::stat_from", find_from, 'start', start);
-                            strapi$1.log.info(":::dm-pages count:", dm_pages.length);
-                            strapi$1.log.info(":::stat_", this.stat_pk);
+                            strapi$1.log.info(':::stat_from', find_from, 'start', start);
+                            strapi$1.log.info(':::dm-pages count:', dm_pages.length);
+                            strapi$1.log.info(':::stat_', this.stat_pk);
                             // strapi.log.info(":::stat_", this.stat_pk);
                             if (dm_pages.length === 100) {
                                 this.calc_pk(start + 100);
                             }
                         }
                         else {
-                            strapi$1.log.info("stat_pk", 'no dm-page from', find_from);
+                            strapi$1.log.info('stat_pk', 'no dm-page from', find_from);
                         }
                         _c.label = 3;
                     case 3: return [2 /*return*/];
@@ -259,7 +265,7 @@ var DouyinStat = /** @class */ (function () {
             var find_query, data, _i, _a, dm, text;
             return __generator(this, function (_b) {
                 find_query = function (text, pk_conf, stat_pk) {
-                    for (var _i = 0, _a = pk_conf["data"]["option_arr"]; _i < _a.length; _i++) {
+                    for (var _i = 0, _a = pk_conf['data']['option_arr']; _i < _a.length; _i++) {
                         var option = _a[_i];
                         var query = option.query;
                         if (!stat_pk[query])
@@ -271,8 +277,8 @@ var DouyinStat = /** @class */ (function () {
                     }
                 };
                 data = page.data;
-                if (data && data["dm_arr"]) {
-                    for (_i = 0, _a = data["dm_arr"]; _i < _a.length; _i++) {
+                if (data && data['dm_arr']) {
+                    for (_i = 0, _a = data['dm_arr']; _i < _a.length; _i++) {
                         dm = _a[_i];
                         text = dm.text;
                         find_query(text, this.douyin_pk_conf, this.stat_pk);
@@ -284,6 +290,7 @@ var DouyinStat = /** @class */ (function () {
     };
     return DouyinStat;
 }());
+//# sourceMappingURL=dm-page-stat.js.map
 
 var strapi$2 = strapi_;
 var douyinStatSrv = new DouyinStat();
@@ -303,15 +310,16 @@ var PLUG_POST_dm_page = function (ctx) { return __awaiter(void 0, void 0, void 0
         switch (_a.label) {
             case 0:
                 dmk_list = ctx.request.body.dmk_list;
+                strapi$2.log.info('PLUG_POST_dm_page', dmk_list.length);
                 new_dm_arr = [];
                 if (dmk_list && dmk_list.length > 0) {
-                    strapi$2.log.info("receive from airtest<==dmk_list:", dmk_list.length);
+                    strapi$2.log.info('receive from airtest<==dmk_list:', dmk_list.length);
                     for (_i = 0, dmk_list_1 = dmk_list; _i < dmk_list_1.length; _i++) {
                         dmk = dmk_list_1[_i];
-                        a = dmk.split("：");
+                        a = dmk.split('：');
                         if (a.length > 1) {
                             username = a.shift();
-                            text = a.join("：");
+                            text = a.join('：');
                             strapi$2.log.info("::" + username + ": ", text);
                             new_dm_arr.push({ username: username, text: text });
                         }
@@ -319,21 +327,21 @@ var PLUG_POST_dm_page = function (ctx) { return __awaiter(void 0, void 0, void 0
                 }
                 if (!new_dm_arr.length) return [3 /*break*/, 2];
                 new_page = {
-                    data: { dm_arr: new_dm_arr },
+                    data: { dm_arr: new_dm_arr }
                 };
-                return [4 /*yield*/, strapi$2.query("dm-page").create(new_page)];
+                return [4 /*yield*/, strapi$2.query('dm-page').create(new_page)];
             case 1:
                 entry = _a.sent();
                 created_at = entry['created_at'];
                 strapi$2.log.info('new dm-page created_at', created_at);
                 douyinStatSrv.calc_page(new_page);
-                strapi$2.log.info("stat_pk", douyinStatSrv.stat_pk);
+                strapi$2.log.info('stat_pk', douyinStatSrv.stat_pk);
                 _a.label = 2;
             case 2:
                 // Send 200 `ok`
                 ctx.send({
-                    message: "ok",
-                    create_count: new_dm_arr.length,
+                    message: 'ok',
+                    create_count: new_dm_arr.length
                 });
                 return [2 /*return*/];
         }
@@ -341,12 +349,12 @@ var PLUG_POST_dm_page = function (ctx) { return __awaiter(void 0, void 0, void 0
 }); };
 var PLUG_GET_dm_page = function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        strapi$2.log.info("dm stat start");
+        strapi$2.log.info('dm stat start');
         // Send 200 `ok`
         ctx.send({
-            message: "ok",
+            message: 'ok',
             stat: douyinStatSrv.stat_pk,
-            conf: douyinStatSrv.douyin_pk_conf["data"]
+            conf: douyinStatSrv.douyin_pk_conf['data']
         });
         return [2 /*return*/];
     });
@@ -359,11 +367,12 @@ var PLUG_GET_dm_page = function (ctx) { return __awaiter(void 0, void 0, void 0,
 //╎
 //└╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘
 var POST_plugins = {
-    'boot': PLUG_POST_dm_page,
+    boot: PLUG_POST_dm_page,
     'dm-page': PLUG_POST_dm_page
 };
 var GET_plugins = {
-    'get': PLUG_GET_dm_page,
+    // /srv/dm-page/get
+    'dm-page': PLUG_GET_dm_page
 };
 //┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
 //╎                 strapi handler
@@ -424,5 +433,4 @@ var handle = function (plugin_routes, plugin_name, ctx) { return __awaiter(void 
         }
     });
 }); };
-//# sourceMappingURL=srv.js.map
 //# sourceMappingURL=srv.js.map

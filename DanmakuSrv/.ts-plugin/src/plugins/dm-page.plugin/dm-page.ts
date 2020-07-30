@@ -8,6 +8,8 @@ setTimeout(async () => {
 export const PLUG_POST_dm_page = async (ctx: any) => {
   // post new dmk_list from airtest
   const { dmk_list } = ctx.request.body as any
+  strapi.log.info('PLUG_POST_dm_page', dmk_list.length)
+
   let new_dm_arr = []
   if (dmk_list && dmk_list.length > 0) {
     strapi.log.info('receive from airtest<==dmk_list:', dmk_list.length)

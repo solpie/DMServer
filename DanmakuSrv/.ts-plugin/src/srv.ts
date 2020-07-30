@@ -13,7 +13,8 @@ const POST_plugins: any = {
   'dm-page': PLUG_POST_dm_page
 }
 const GET_plugins: any = {
-  get: PLUG_GET_dm_page
+  // /srv/dm-page/get
+  'dm-page': PLUG_GET_dm_page
 }
 //┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
 //╎                 strapi handler
