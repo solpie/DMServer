@@ -4,6 +4,8 @@ const strapi = strapi_
 const douyinStatSrv = new DouyinStat()
 setTimeout(async () => {
   await douyinStatSrv.boot()
+  let dm_arr = await douyinStatSrv.find_lottery_user(100, 0, [])
+  strapi_.log.info('douyinStatSrv dm_arr', dm_arr.length)
 }, 2000)
 export const PLUG_POST_dm_page = async (ctx: any) => {
   // post new dmk_list from airtest

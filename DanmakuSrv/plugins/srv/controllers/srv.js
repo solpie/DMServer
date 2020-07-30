@@ -55,6 +55,26 @@ var strapi_ = strapi;
 
 var strapi$1 = strapi_;
 var request = require('request');
+var post_data = function (url, data) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, request({
+                    url: url,
+                    method: 'POST',
+                    json: true,
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: data
+                }, function (error, response, body) {
+                    if (!error && response.statusCode == 200) ;
+                })];
+            case 1:
+                _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}); };
 var DouyinStat = /** @class */ (function () {
     function DouyinStat() {
         this.init = false;
@@ -76,7 +96,7 @@ var DouyinStat = /** @class */ (function () {
                         entry = (_a.sent())[0];
                         if (!entry) return [3 /*break*/, 3];
                         strapi$1.log.info('dm service index', entry.name);
-                        this.init_ws(entry['rpc_server_url']);
+                        this.init_ws_poll(entry['rpc_server_url']);
                         this.douyin_pk_conf = entry;
                         this.stat_pk = {};
                         // strapi.log.info("dm-plugin today", this.today_date);
@@ -92,15 +112,16 @@ var DouyinStat = /** @class */ (function () {
             });
         });
     };
-    DouyinStat.prototype.init_ws = function (url) {
+    DouyinStat.prototype.init_ws_poll = function (rpc_url) {
         return __awaiter(this, void 0, void 0, function () {
+            var socket;
             var _this = this;
             return __generator(this, function (_a) {
-                if (url) {
+                if (rpc_url) {
                     // i
-                    if (url.charAt(url.length - 1) === '/')
-                        url = url.substr(0, url.length - 1);
-                    strapi$1.log.info('conf server url:', url);
+                    if (rpc_url.charAt(rpc_url.length - 1) === '/')
+                        rpc_url = rpc_url.substr(0, rpc_url.length - 1);
+                    strapi$1.log.info('conf server url:', rpc_url);
                     setInterval(function () { return __awaiter(_this, void 0, void 0, function () {
                         var _this = this;
                         return __generator(this, function (_a) {
@@ -108,18 +129,18 @@ var DouyinStat = /** @class */ (function () {
                                 case 0: 
                                 // heart polling
                                 // get active conf
-                                return [4 /*yield*/, request(url + '/srv/dm-plugin/get', function (err, res, body) { return __awaiter(_this, void 0, void 0, function () {
+                                return [4 /*yield*/, request(rpc_url + '/srv/dm-plugin/get', function (err, res, body) { return __awaiter(_this, void 0, void 0, function () {
                                         var data;
                                         return __generator(this, function (_a) {
                                             switch (_a.label) {
                                                 case 0:
-                                                    strapi$1.log.debug('[ping]', url + '/srv/dm-plugin/get');
+                                                    strapi$1.log.debug('[ping]', rpc_url + '/srv/dm-plugin/get');
                                                     if (!this.douyin_pk_conf) return [3 /*break*/, 3];
                                                     data = JSON.parse(body);
                                                     return [4 /*yield*/, this.update_conf(data)];
                                                 case 1:
                                                     _a.sent();
-                                                    return [4 /*yield*/, this.compare_stat_upload(data, url)];
+                                                    return [4 /*yield*/, this.compare_stat_upload(data, rpc_url)];
                                                 case 2:
                                                     _a.sent();
                                                     _a.label = 3;
@@ -135,14 +156,74 @@ var DouyinStat = /** @class */ (function () {
                             }
                         });
                     }); }, 3000);
-                    // var socket = require('socket.io-client')(url);
-                    // socket.on('connect', function(){
-                    //   strapi.log.info('init ws conf', url)
-                    // });
-                    // socket.on('event', function(data){});
-                    // socket.on('disconnect', function(){});
+                    socket = require('socket.io-client')(rpc_url);
+                    socket.on('connect', function () {
+                        strapi$1.log.info('init ws conf', rpc_url);
+                    });
+                    socket.on('DM_EVENT_GET_LAST_DM', function (data) { return __awaiter(_this, void 0, void 0, function () {
+                        var dm_arr;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    if (!(Number(data['amount']) > 0)) return [3 /*break*/, 3];
+                                    return [4 /*yield*/, this.find_lottery_user(data['amount'], 0, [])];
+                                case 1:
+                                    dm_arr = _a.sent();
+                                    strapi_.log.info('douyinStatSrv dm_arr', dm_arr.length);
+                                    // rpc_url
+                                    return [4 /*yield*/, post_data(rpc_url + '/srv/dm-plugin/last-dm/', { dm_arr: dm_arr })];
+                                case 2:
+                                    // rpc_url
+                                    _a.sent();
+                                    _a.label = 3;
+                                case 3: return [2 /*return*/];
+                            }
+                        });
+                    }); });
+                    socket.on('disconnect', function () { });
                 }
                 return [2 /*return*/];
+            });
+        });
+    };
+    DouyinStat.prototype.find_lottery_user = function (amount, start, $dm_arr) {
+        return __awaiter(this, void 0, void 0, function () {
+            var find_dm, find_from, dm_pages, _i, dm_pages_1, page;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        find_dm = function (page, dm_arr) {
+                            var data = page.data;
+                            if (data && data['dm_arr'] && data['dm_arr'].length) {
+                                strapi_.log.info('find_lottery_user concat:', data['dm_arr'].length);
+                                // return dm_arr.concat(data['dm_arr'])
+                                for (var i = 0; i < data['dm_arr'].length; i++) {
+                                    var dm = data['dm_arr'][i];
+                                    dm_arr.push(dm);
+                                }
+                            }
+                        };
+                        find_from = this.douyin_pk_conf['stat_from'];
+                        return [4 /*yield*/, strapi$1
+                                .query('dm-page')
+                                .find({ created_at_gt: find_from, _start: start, _sort: 'created_at:desc' })];
+                    case 1:
+                        dm_pages = _a.sent();
+                        for (_i = 0, dm_pages_1 = dm_pages; _i < dm_pages_1.length; _i++) {
+                            page = dm_pages_1[_i];
+                            if ($dm_arr.length < amount)
+                                find_dm(page, $dm_arr);
+                            else
+                                break;
+                        }
+                        strapi_.log.info('find_lottery_user need:', amount, 'find', $dm_arr.length);
+                        if (!(dm_pages.length === 100 && $dm_arr.length < amount)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.find_lottery_user(amount, start + 100, $dm_arr)];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3: return [2 /*return*/, $dm_arr];
+                }
             });
         });
     };
@@ -195,17 +276,23 @@ var DouyinStat = /** @class */ (function () {
                         }
                         if (!is_new_stat) return [3 /*break*/, 2];
                         strapi$1.log.info('new stat', this.stat_pk);
-                        return [4 /*yield*/, request({
-                                url: url + '/srv/dm-plugin/stat',
-                                method: 'POST',
-                                json: true,
-                                headers: {
-                                    'content-type': 'application/json'
-                                },
-                                body: { option_conf: { option_arr: remote_option_arr } }
-                            }, function (error, response, body) {
-                                if (!error && response.statusCode == 200) ;
-                            })];
+                        return [4 /*yield*/, post_data(url + '/srv/dm-plugin/stat', { option_conf: { option_arr: remote_option_arr } })
+                            // await request(
+                            //     {
+                            //         url: url + '/srv/dm-plugin/stat',
+                            //         method: 'POST',
+                            //         json: true,
+                            //         headers: {
+                            //             'content-type': 'application/json'
+                            //         },
+                            //         body: { option_conf: { option_arr: remote_option_arr } }
+                            //     },
+                            //     function (error: any, response: any, body: any) {
+                            //         if (!error && response.statusCode == 200) {
+                            //         }
+                            //     }
+                            // )
+                        ];
                     case 1:
                         _a.sent();
                         _a.label = 2;
@@ -217,7 +304,7 @@ var DouyinStat = /** @class */ (function () {
     DouyinStat.prototype.calc_pk = function (start) {
         if (start === void 0) { start = 0; }
         return __awaiter(this, void 0, void 0, function () {
-            var entry, find_from, dm_pages, _i, _a, option, _b, dm_pages_1, page;
+            var entry, find_from, dm_pages, _i, _a, option, _b, dm_pages_2, page;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0: return [4 /*yield*/, strapi$1
@@ -238,8 +325,8 @@ var DouyinStat = /** @class */ (function () {
                                 option = _a[_i];
                                 strapi$1.log.info('--option', option);
                             }
-                            for (_b = 0, dm_pages_1 = dm_pages; _b < dm_pages_1.length; _b++) {
-                                page = dm_pages_1[_b];
+                            for (_b = 0, dm_pages_2 = dm_pages; _b < dm_pages_2.length; _b++) {
+                                page = dm_pages_2[_b];
                                 this.calc_page(page);
                             }
                             // this.stat_pk = stat_pk;
@@ -290,16 +377,20 @@ var DouyinStat = /** @class */ (function () {
     };
     return DouyinStat;
 }());
-//# sourceMappingURL=dm-page-stat.js.map
 
 var strapi$2 = strapi_;
 var douyinStatSrv = new DouyinStat();
 setTimeout(function () { return __awaiter(void 0, void 0, void 0, function () {
+    var dm_arr;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, douyinStatSrv.boot()];
             case 1:
                 _a.sent();
+                return [4 /*yield*/, douyinStatSrv.find_lottery_user(100, 0, [])];
+            case 2:
+                dm_arr = _a.sent();
+                strapi_.log.info('douyinStatSrv dm_arr', dm_arr.length);
                 return [2 /*return*/];
         }
     });
@@ -433,4 +524,5 @@ var handle = function (plugin_routes, plugin_name, ctx) { return __awaiter(void 
         }
     });
 }); };
+//# sourceMappingURL=srv.js.map
 //# sourceMappingURL=srv.js.map

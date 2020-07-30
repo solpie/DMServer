@@ -2,6 +2,24 @@ import { strapi_, IDoc } from '../../strapi'
 
 let strapi = strapi_
 const request = require('request')
+
+const post_data = async (url: string, data: any) => {
+  await request(
+    {
+      url,
+      method: 'POST',
+      json: true,
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: data
+    },
+    function(error: any, response: any, body: any) {
+      if (!error && response.statusCode == 200) {
+      }
+    }
+  )
+}
 interface Idoc_plugin_conf extends IDoc {
   name: string
   rpc_server_url: string
@@ -20,7 +38,7 @@ export class DouyinStat {
 
     if (entry) {
       strapi.log.info('dm service index', entry.name)
-      this.init_ws(entry['rpc_server_url'])
+      this.init_ws_poll(entry['rpc_server_url'])
       this.douyin_pk_conf = entry
       this.stat_pk = {}
 
@@ -29,35 +47,72 @@ export class DouyinStat {
       await this.calc_pk()
     }
   }
-  async init_ws(url: string) {
-    if (url) {
+  async init_ws_poll(rpc_url: string) {
+    if (rpc_url) {
       // i
-      if (url.charAt(url.length - 1) === '/')
-        url = url.substr(0, url.length - 1)
-      strapi.log.info('conf server url:', url)
+      if (rpc_url.charAt(rpc_url.length - 1) === '/')
+        rpc_url = rpc_url.substr(0, rpc_url.length - 1)
+      strapi.log.info('conf server url:', rpc_url)
       setInterval(async () => {
         // heart polling
         // get active conf
         await request(
-          url + '/srv/dm-plugin/get',
+          rpc_url + '/srv/dm-plugin/get',
           async (err: any, res: any, body: any) => {
-            strapi.log.debug('[ping]', url + '/srv/dm-plugin/get')
+            strapi.log.debug('[ping]', rpc_url + '/srv/dm-plugin/get')
             if (this.douyin_pk_conf) {
               const data = JSON.parse(body)
               await this.update_conf(data)
-              await this.compare_stat_upload(data, url)
+              await this.compare_stat_upload(data, rpc_url)
             }
           }
         ) // request
       }, 3000)
 
-      // var socket = require('socket.io-client')(url);
-      // socket.on('connect', function(){
-      //   strapi.log.info('init ws conf', url)
-      // });
-      // socket.on('event', function(data){});
-      // socket.on('disconnect', function(){});
+      var socket = require('socket.io-client')(rpc_url)
+      socket.on('connect', function() {
+        strapi.log.info('init ws conf', rpc_url)
+      })
+      socket.on('DM_EVENT_GET_LAST_DM', async (data: any) => {
+        if (Number(data['amount']) > 0) {
+          let dm_arr = await this.find_lottery_user(data['amount'], 0, [])
+          strapi_.log.info('douyinStatSrv dm_arr', dm_arr.length)
+          // rpc_url
+          await post_data(rpc_url + '/srv/dm-plugin/last-dm/', { dm_arr })
+        }
+      })
+      socket.on('disconnect', function() {})
     }
+  }
+  async find_lottery_user(amount: number, start: number, $dm_arr: Array<any>) {
+    const find_dm = (page: any, dm_arr: Array<any>) => {
+      const { data } = page
+      if (data && data['dm_arr'] && data['dm_arr'].length) {
+        strapi_.log.info('find_lottery_user concat:', data['dm_arr'].length)
+        // return dm_arr.concat(data['dm_arr'])
+        for (let i = 0; i < data['dm_arr'].length; i++) {
+          const dm = data['dm_arr'][i]
+          dm_arr.push(dm)
+        }
+      }
+    }
+    let find_from = this.douyin_pk_conf['stat_from']
+    let dm_pages = await strapi
+      .query('dm-page')
+      .find({
+        created_at_gt: find_from,
+        _start: start,
+        _sort: 'created_at:desc'
+      })
+    for (let page of dm_pages) {
+      if ($dm_arr.length < amount) find_dm(page, $dm_arr)
+      else break
+    }
+    strapi_.log.info('find_lottery_user need:', amount, 'find', $dm_arr.length)
+    if (dm_pages.length === 100 && $dm_arr.length < amount) {
+      await this.find_lottery_user(amount, start + 100, $dm_arr)
+    }
+    return $dm_arr
   }
   async update_conf(data: any) {
     // strapi.log.info('update active cond', _this.douyin_pk_conf)
@@ -98,21 +153,24 @@ export class DouyinStat {
 
       if (is_new_stat) {
         strapi.log.info('new stat', this.stat_pk)
-        await request(
-          {
-            url: url + '/srv/dm-plugin/stat',
-            method: 'POST',
-            json: true,
-            headers: {
-              'content-type': 'application/json'
-            },
-            body: { option_conf: { option_arr: remote_option_arr } }
-          },
-          function(error: any, response: any, body: any) {
-            if (!error && response.statusCode == 200) {
-            }
-          }
-        )
+        await post_data(url + '/srv/dm-plugin/stat', {
+          option_conf: { option_arr: remote_option_arr }
+        })
+        // await request(
+        //     {
+        //         url: url + '/srv/dm-plugin/stat',
+        //         method: 'POST',
+        //         json: true,
+        //         headers: {
+        //             'content-type': 'application/json'
+        //         },
+        //         body: { option_conf: { option_arr: remote_option_arr } }
+        //     },
+        //     function (error: any, response: any, body: any) {
+        //         if (!error && response.statusCode == 200) {
+        //         }
+        //     }
+        // )
       }
     }
   }
