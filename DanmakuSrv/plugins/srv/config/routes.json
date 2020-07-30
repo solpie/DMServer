@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/dm-page/",
+      "handler": "srv.index_post",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/get/",
+      "handler": "srv.index",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

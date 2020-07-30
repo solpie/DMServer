@@ -17,6 +17,8 @@ using('tail_dm.air')
 from tail_dm import *
 def send_to_server(dmk_list):
     server_url = 'http://localhost:8888/dm-plugin/'
+    server_url = 'http://localhost:8888/srv/dm-page'
+
 #     server_url = server_url+'/dm'
     data = json.dumps({"dmk_list":dmk_list})
     data = bytes(data, 'utf-8')
@@ -56,7 +58,7 @@ def get_dm():
 
 while(1):
     get_dm()
-    sleep(3)
+    sleep(2.5)
 
 
 

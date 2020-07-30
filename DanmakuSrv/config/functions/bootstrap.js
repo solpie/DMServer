@@ -11,5 +11,5 @@
  */
 
 module.exports = () => {
-    strapi.services['plugin-conf'].boot()
+    // strapi.services['plugin-conf'].boot()
 };
