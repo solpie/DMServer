@@ -184,7 +184,7 @@ var DouyinStat = /** @class */ (function () {
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
-                                        // receive new conf 
+                                        // receive new conf
                                         strapi_.log.info('DM_EVENT_NEW_CONF');
                                         return [4 /*yield*/, this.update_conf(data)];
                                     case 1:
@@ -221,9 +221,7 @@ var DouyinStat = /** @class */ (function () {
                             }
                         };
                         find_from = this.douyin_pk_conf['stat_from'];
-                        return [4 /*yield*/, strapi$1
-                                .query('dm-page')
-                                .find({
+                        return [4 /*yield*/, strapi$1.query('dm-page').find({
                                 created_at_gt: find_from,
                                 _start: start,
                                 _sort: 'created_at:desc'
