@@ -5,6 +5,7 @@
   "description": "A Strapi application",
   "scripts": {
     "dev": "strapi develop",
+    "srv": "cd .ts-plugin&&yarn start",
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"

@@ -53,23 +53,24 @@ export class DouyinStat {
       if (rpc_url.charAt(rpc_url.length - 1) === '/')
         rpc_url = rpc_url.substr(0, rpc_url.length - 1)
       strapi.log.info('conf server url:', rpc_url)
-      setInterval(async () => {
-        // heart polling
-        // get active conf
-        await request(
-          rpc_url + '/srv/dm-plugin/get',
-          async (err: any, res: any, body: any) => {
-            strapi.log.debug('[ping]', rpc_url + '/srv/dm-plugin/get')
-            if (this.douyin_pk_conf) {
-              const data = JSON.parse(body)
-              await this.update_conf(data)
-              await this.compare_stat_upload(data, rpc_url)
-            }
-          }
-        ) // request
-      }, 3000)
 
-      var socket = require('socket.io-client')(rpc_url)
+      // setInterval(async () => {
+      // heart polling
+      // get active conf
+      await request(
+        rpc_url + '/srv/dm-plugin/get',
+        async (err: any, res: any, body: any) => {
+          strapi.log.debug('[ping]', rpc_url + '/srv/dm-plugin/get')
+          if (this.douyin_pk_conf) {
+            const data = JSON.parse(body)
+            await this.update_conf(data)
+            await this.compare_stat_upload(data, rpc_url)
+          }
+        }
+      ) // request
+      // }, 3000)
+
+      var socket = require('socket.io-client')(rpc_url + '/dm')
       socket.on('connect', function() {
         strapi.log.info('init ws conf', rpc_url)
       })
@@ -80,6 +81,15 @@ export class DouyinStat {
           // rpc_url
           await post_data(rpc_url + '/srv/dm-plugin/last-dm/', { dm_arr })
         }
+      })
+      socket.on('test', function() {
+        strapi_.log.info('test ws')
+      })
+      socket.on('DM_EVENT_NEW_CONF', async (data: any) => {
+        // receive new conf
+        strapi_.log.info('DM_EVENT_NEW_CONF')
+        await this.update_conf(data)
+        await this.compare_stat_upload(data, rpc_url)
       })
       socket.on('disconnect', function() {})
     }
@@ -97,13 +107,11 @@ export class DouyinStat {
       }
     }
     let find_from = this.douyin_pk_conf['stat_from']
-    let dm_pages = await strapi
-      .query('dm-page')
-      .find({
-        created_at_gt: find_from,
-        _start: start,
-        _sort: 'created_at:desc'
-      })
+    let dm_pages = await strapi.query('dm-page').find({
+      created_at_gt: find_from,
+      _start: start,
+      _sort: 'created_at:desc'
+    })
     for (let page of dm_pages) {
       if ($dm_arr.length < amount) find_dm(page, $dm_arr)
       else break
@@ -115,7 +123,7 @@ export class DouyinStat {
     return $dm_arr
   }
   async update_conf(data: any) {
-    // strapi.log.info('update active cond', _this.douyin_pk_conf)
+    strapi.log.info('update active conf')
     if (
       data &&
       this.douyin_pk_conf['conf_updated_at'] !==
