@@ -75,6 +75,7 @@ export class DouyinStat {
         strapi.log.info('init ws conf', rpc_url)
       })
       socket.on('DM_EVENT_GET_LAST_DM', async (data: any) => {
+        strapi_.log.info('DM_EVENT_GET_LAST_DM', data)
         if (Number(data['amount']) > 0) {
           let dm_arr = await this.find_lottery_user(data['amount'], 0, [])
           strapi_.log.info('douyinStatSrv dm_arr', dm_arr.length)

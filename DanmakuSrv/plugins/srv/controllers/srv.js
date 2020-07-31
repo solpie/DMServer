@@ -162,6 +162,7 @@ var DouyinStat = /** @class */ (function () {
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
+                                        strapi_.log.info('DM_EVENT_GET_LAST_DM', data);
                                         if (!(Number(data['amount']) > 0)) return [3 /*break*/, 3];
                                         return [4 /*yield*/, this.find_lottery_user(data['amount'], 0, [])];
                                     case 1:
