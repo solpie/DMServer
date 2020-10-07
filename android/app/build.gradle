@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -12,6 +11,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
     }
 
     buildTypes {
@@ -29,4 +32,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     compileOnly files('libs\\api-82.jar')
+    debugImplementation  "io.objectbox:objectbox-android-objectbrowser:2.7.1"
+    releaseImplementation  "io.objectbox:objectbox-android:2.7.1"
 }
+apply plugin: 'io.objectbox'
