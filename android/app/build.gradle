@@ -34,5 +34,6 @@ dependencies {
     compileOnly files('libs\\api-82.jar')
     debugImplementation  "io.objectbox:objectbox-android-objectbrowser:2.7.1"
     releaseImplementation  "io.objectbox:objectbox-android:2.7.1"
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
 }
 apply plugin: 'io.objectbox'

@@ -2,6 +2,7 @@ package com.rkb.douyincat;
 
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -9,6 +10,11 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import io.objectbox.Box;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class Hook implements IXposedHookLoadPackage {
     private void hook_okhttp3(XC_LoadPackage.LoadPackageParam loadPackageParam) {
@@ -119,11 +125,37 @@ public class Hook implements IXposedHookLoadPackage {
 //                        dm.msg_id =msg_id;
 //                        dm.created_time = String.valueOf(System.currentTimeMillis());
 //                        dmBox.put(dm);
-
+                        String json = bowlingJson(msg_id, user_id, user_name, content);
+                        String response = post("http://c-stg.liangle.com/srv/dmcat", json);
+                        Log.i("dm", "post:  " + response);
                         super.afterHookedMethod(param);
                     }
                 }
         );
+    }
+
+    public static final MediaType JSON
+            = MediaType.get("application/json; charset=utf-8");
+
+    OkHttpClient client = new OkHttpClient();
+
+    String post(String url, String json) throws IOException {
+        RequestBody body = RequestBody.create(json, JSON);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        }
+    }
+
+    String bowlingJson(String msg_id, String user_id, String user_name, String content) {
+        return "{\"msg_id\":\"" + msg_id + "\","
+                + "\"user_id\":\"" + user_id + "\","
+                + "\"user_name\":\"" + user_name + "\","
+                + "\"content\":\"" + content + "\""
+                + "}";
     }
 
     @Override
