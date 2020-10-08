@@ -1,0 +1,10 @@
+{
+  "collection": "@nestjs/schematics",
+  "generateOptions": {
+    "spec": {
+      "service": false,
+      "s": false
+    }
+  },
+  "sourceRoot": "src"
+}

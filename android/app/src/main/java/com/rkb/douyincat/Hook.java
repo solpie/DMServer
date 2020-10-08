@@ -95,12 +95,16 @@ public class Hook implements IXposedHookLoadPackage {
 
 //                        HashMap kv = new HashMap();
                         String msg_id = "";
+                        String room_id = "";
                         for (String segment : commonDataStr.toString().split("\\{|,\\s|\\}")) {
                             if (segment.contains("=")) {
                                 segment = segment.replace("'", "");
                                 String[] a = segment.split("=");
                                 if (a[0].contains("messageId")) {
                                     msg_id = a[1];
+                                }
+                                if (a[0].contains("roomId")) {
+                                    room_id = a[1];
                                 }
 //                Log.i("test", segment);
                             }
@@ -125,7 +129,7 @@ public class Hook implements IXposedHookLoadPackage {
 //                        dm.msg_id =msg_id;
 //                        dm.created_time = String.valueOf(System.currentTimeMillis());
 //                        dmBox.put(dm);
-                        String json = bowlingJson(msg_id, user_id, user_name, content);
+                        String json = bowlingJson(room_id, msg_id, user_id, user_name, content);
                         String response = post("http://c-stg.liangle.com/srv/dmcat", json);
                         Log.i("dm", "post:  " + response);
                         super.afterHookedMethod(param);
@@ -150,8 +154,9 @@ public class Hook implements IXposedHookLoadPackage {
         }
     }
 
-    String bowlingJson(String msg_id, String user_id, String user_name, String content) {
+    String bowlingJson(String room_id, String msg_id, String user_id, String user_name, String content) {
         return "{\"msg_id\":\"" + msg_id + "\","
+                + "\"room_id\":\"" + room_id + "\","
                 + "\"user_id\":\"" + user_id + "\","
                 + "\"user_name\":\"" + user_name + "\","
                 + "\"content\":\"" + content + "\""
