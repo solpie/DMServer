@@ -13,6 +13,9 @@ export class DmcatService {
   findAll(): Promise<DmEntity[]> {
     return this.usersRepository.find();
   }
+  count(): Promise<number> {
+    return this.usersRepository.count();
+  }
   find_by_strapi(query): Promise<DmEntity[]> {
     // {
     //     "_limit": "10",
@@ -28,7 +31,6 @@ export class DmcatService {
     option['skip'] = query['_start'];
     return this.usersRepository.find(option);
   }
-
   async create(body: DmEntity): Promise<DmEntity> {
     body.created_at = new Date().getTime();
     return await this.usersRepository.save(body);

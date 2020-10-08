@@ -30,10 +30,9 @@ async function bootstrap() {
     let is_proxy = true;
 
     // if (pathname.includes('/content-manager/explorer/application')) {
-    if (pathname.includes('/content-manager/explorer/application::dm.dm')) {
+    if (pathname.includes('/content-manager/explorer/application::dm.dm') ||
+    pathname.includes('/dmcat') ) {
       Logger.log(`hook=>${pathname} => dmcat`);
-
-
       is_proxy = false;
     }
 
