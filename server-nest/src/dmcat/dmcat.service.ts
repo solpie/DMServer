@@ -31,9 +31,9 @@ export class DmcatService {
     option['skip'] = query['_start'];
     return this.usersRepository.find(option);
   }
-  async create(body: DmEntity): Promise<DmEntity> {
+  async create(body: DmEntity) {
     body.created_at = new Date().getTime();
-    return await this.usersRepository.save(body);
+    return this.usersRepository.save(body);
   }
   findOne(id: string): Promise<DmEntity> {
     return this.usersRepository.findOne(id);
