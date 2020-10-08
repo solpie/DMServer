@@ -1,0 +1,32 @@
+{
+  "name": "electron-boilerplate-sqlite",
+  "productName": "Electron boilerplate with sqlite",
+  "description": "Starter for your electron + sqlite application",
+  "version": "1.0.0",
+  "author": "Kolley Kibber <kolley.kibber@example.com>",
+  "copyright": "© 2016, Kibber Ltd.",
+  "homepage": "http://example.com",
+  "license": "MIT",
+  "main": "app/app.js",
+  "build": {
+    "appId": "com.example.electron-boilerplate-sqlite",
+    "files": [
+      "app/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ]
+  },
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "build"
+  },
+  "dependencies": {
+    "sqlite3": "^4.0.9"
+  },
+  "devDependencies": {
+    "electron": "^5.0.6",
+    "electron-builder": "^21.0.15"
+  }
+}
