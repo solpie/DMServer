@@ -10,7 +10,7 @@ import { DmcatService } from './dmcat.service';
 export class DmcatController {
   constructor(private dmSrv: DmcatService) {}
   @Post('/dmcat/create')
-  async create_dm(@Body() body: any) {
+  create_dm(@Body() body: any) {
     const { msg_id, user_id, user_name, content, room_id } = body;
     this.dmSrv.create(body);
     return { msg: 'sus', user_name, content };
@@ -35,5 +35,4 @@ export class DmcatController {
     let count = await this.dmSrv.count();
     return { count };
   }
-
 }
