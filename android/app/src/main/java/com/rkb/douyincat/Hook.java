@@ -120,17 +120,10 @@ public class Hook implements IXposedHookLoadPackage {
                         Log.i("dm", "user_id: " + user_id);
                         Log.i("dm", "hook: content " + user_name + ":" + content);
 
-//                        ObjectBox.init(this);
-//                        Box<EntityDm> dmBox = ObjectBox.get().boxFor(EntityDm.class);
-//                        EntityDm dm = new EntityDm();
-//                        dm.content= content;
-//                        dm.user_name = user_name;
-//                        dm.user_id =user_id;
-//                        dm.msg_id =msg_id;
-//                        dm.created_time = String.valueOf(System.currentTimeMillis());
-//                        dmBox.put(dm);
                         String json = bowlingJson(room_id, msg_id, user_id, user_name, content);
-                        String response = post("http://c-stg.liangle.com/srv/dmcat", json);
+                        String url = "http://c-stg.liangle.com/srv/dmcat";
+                         url = "http://47.97.90.189:8088/dmcat/create";
+                        String response = post(url, json);
                         Log.i("dm", "post:  " + response);
                         super.afterHookedMethod(param);
                     }
