@@ -25,8 +25,6 @@ async function bootstrap() {
    * @return {Boolean}
    */
   const filter = function(pathname, req) {
-    // console.log(pathname);
-    // return !pathname.match('^/ns'); //&& req.method === 'GET';
     let is_proxy = true;
 
     // if (pathname.includes('/content-manager/explorer/application')) {
