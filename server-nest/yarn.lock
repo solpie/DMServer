@@ -573,20 +573,6 @@
     tslib "2.0.0"
     uuid "8.3.0"
 
-"@nestjs/mapped-types@0.0.5":
-  version "0.0.5"
-  resolved "https://registry.npm.taobao.org/@nestjs/mapped-types/download/@nestjs/mapped-types-0.0.5.tgz#0c3462de4125eea0e85e3a520f0de4e7e8dcfa40"
-  integrity sha1-DDRi3kEl7qDoXjpSDw3k5+jc+kA=
-
-"@nestjs/microservices@^7.4.2":
-  version "7.4.2"
-  resolved "https://registry.npm.taobao.org/@nestjs/microservices/download/@nestjs/microservices-7.4.2.tgz#24927a90e4839d651fd50e47e9719348c437ad98"
-  integrity sha1-JJJ6kOSDnWUf1Q5H6XGTSMQ3rZg=
-  dependencies:
-    iterare "1.2.1"
-    json-socket "0.3.0"
-    tslib "2.0.0"
-
 "@nestjs/platform-express@^7.0.0":
   version "7.4.2"
   resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-7.4.2.tgz#fbda43faa482531f54619d70a1f9d1ed67ad6436"
@@ -627,15 +613,6 @@
     "@angular-devkit/core" "9.1.7"
     "@angular-devkit/schematics" "9.1.7"
     fs-extra "9.0.0"
-
-"@nestjs/swagger@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.npm.taobao.org/@nestjs/swagger/download/@nestjs/swagger-4.5.12.tgz#e8aa65fbb0033007ece1d494b002f47ff472c20b"
-  integrity sha1-6Kpl+7ADMAfs4dSUsAL0f/Rywgs=
-  dependencies:
-    "@nestjs/mapped-types" "0.0.5"
-    lodash "4.17.15"
-    path-to-regexp "3.2.0"
 
 "@nestjs/testing@^7.0.0":
   version "7.4.2"
@@ -924,11 +901,6 @@
   integrity sha512-Xt8TbEyZTnD5Xulw95GLMOkmjGICrOQyJ2jqgkSjAUR3mm7pAIzSR0NFBaMcwlzVvlpCjNwbATcWWwjNiZiFrQ==
   dependencies:
     "@types/superagent" "*"
-
-"@types/swagger-schema-official@^2.0.20":
-  version "2.0.21"
-  resolved "https://registry.npm.taobao.org/@types/swagger-schema-official/download/@types/swagger-schema-official-2.0.21.tgz#56812a86dcd57ba60e5c51705ee96a2b2dc9b374"
-  integrity sha1-VoEqhtzVe6YOXFFwXulqKy3Js3Q=
 
 "@types/tapable@*":
   version "1.0.6"
@@ -3377,33 +3349,12 @@ fastify-formbody@4.0.3:
     fastify-plugin "^2.0.0"
     qs "^6.5.1"
 
-fastify-plugin@^2.0.0, fastify-plugin@^2.3.0:
+fastify-plugin@^2.0.0:
   version "2.3.0"
   resolved "https://registry.npm.taobao.org/fastify-plugin/download/fastify-plugin-2.3.0.tgz?cache=0&sync_timestamp=1597056484622&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffastify-plugin%2Fdownload%2Ffastify-plugin-2.3.0.tgz#ef09432fd099e7cbd45f9612efc22da1da213fea"
   integrity sha1-7wlDL9CZ58vUX5YS78ItodohP+o=
   dependencies:
     semver "^7.3.2"
-
-fastify-static@^3.0.0:
-  version "3.2.0"
-  resolved "https://registry.npm.taobao.org/fastify-static/download/fastify-static-3.2.0.tgz#1c5f433274b310b1c82de6870cc8f4206cedb2bc"
-  integrity sha1-HF9DMnSzELHILeaHDMj0IGztsrw=
-  dependencies:
-    fastify-plugin "^2.0.0"
-    glob "^7.1.4"
-    readable-stream "^3.4.0"
-    send "^0.17.1"
-
-fastify-swagger@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.npm.taobao.org/fastify-swagger/download/fastify-swagger-3.3.0.tgz#b848b51cb4278a81180b817187880405a09deb28"
-  integrity sha1-uEi1HLQnioEYC4Fxh4gEBaCd6yg=
-  dependencies:
-    "@types/swagger-schema-official" "^2.0.20"
-    fastify-plugin "^2.3.0"
-    fastify-static "^3.0.0"
-    js-yaml "^3.14.0"
-    json-schema-resolver "^1.2.0"
 
 fastify@3.1.1:
   version "3.1.1"
@@ -4914,7 +4865,7 @@ js-tokens@^4.0.0:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
-js-yaml@^3.13.1, js-yaml@^3.14.0:
+js-yaml@^3.13.1:
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.0.tgz#a7a34170f26a21bb162424d8adacb4113a69e482"
   integrity sha512-/4IbIeHcD9VMHFqDR/gQ7EdZdLimOvW2DdcxFjdyyZ9NsbS+ccrXqVWDtab/lRl5AlUqmpBx8EhPaWR+OtY17A==
@@ -4969,15 +4920,6 @@ json-parse-better-errors@^1.0.1, json-parse-better-errors@^1.0.2:
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
   integrity sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
 
-json-schema-resolver@^1.2.0:
-  version "1.2.2"
-  resolved "https://registry.npm.taobao.org/json-schema-resolver/download/json-schema-resolver-1.2.2.tgz#52aeb8dbe4ece0df82c0ac2f1642384612542270"
-  integrity sha1-Uq642+Ts4N+CwKwvFkI4RhJUInA=
-  dependencies:
-    debug "^4.1.1"
-    rfdc "^1.1.4"
-    uri-js "^4.2.2"
-
 json-schema-traverse@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz#69f6a87d9513ab8bb8fe63bdb0979c448e684660"
@@ -4987,11 +4929,6 @@ json-schema@0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/json-schema/-/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"
   integrity sha1-tIDIkuWaLwWVTOcnvT8qTogvnhM=
-
-json-socket@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npm.taobao.org/json-socket/download/json-socket-0.3.0.tgz#f4b953c685bb8e8bd0b72438f5208d9a0799ae07"
-  integrity sha1-9LlTxoW7jovQtyQ49SCNmgeZrgc=
 
 json-stable-stringify-without-jsonify@^1.0.1:
   version "1.0.1"
@@ -5204,11 +5141,6 @@ lodash.union@^4.6.0:
   version "4.6.0"
   resolved "https://registry.npm.taobao.org/lodash.union/download/lodash.union-4.6.0.tgz#48bb5088409f16f1821666641c44dd1aaae3cd88"
   integrity sha1-SLtQiECfFvGCFmZkHETdGqrjzYg=
-
-lodash@4.17.15:
-  version "4.17.15"
-  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz?cache=0&sync_timestamp=1597336053864&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
 
 lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19:
   version "4.17.20"
@@ -6904,7 +6836,7 @@ semver@~5.3.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
   integrity sha1-myzl094C0XxgEq0yaqa00M9U+U8=
 
-send@0.17.1, send@^0.17.1:
+send@0.17.1:
   version "0.17.1"
   resolved "https://registry.yarnpkg.com/send/-/send-0.17.1.tgz#c1d8b059f7900f7466dd4938bdc44e11ddb376c8"
   integrity sha512-BsVKsiGcQMFwT8UxypobUKyv7irCNRHk1T0G680vk88yf6LBByGcZJOTJCrTP2xVN6yI+XjPJcNuE3V4fT9sAg==
@@ -7505,18 +7437,6 @@ supports-hyperlinks@^2.0.0:
   dependencies:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
-
-swagger-ui-dist@^3.18.1:
-  version "3.32.1"
-  resolved "https://registry.npm.taobao.org/swagger-ui-dist/download/swagger-ui-dist-3.32.1.tgz#390f0613179e8d8b8556bf6bf4c865be329f5747"
-  integrity sha1-OQ8GExeejYuFVr9r9MhlvjKfV0c=
-
-swagger-ui-express@^4.1.4:
-  version "4.1.4"
-  resolved "https://registry.npm.taobao.org/swagger-ui-express/download/swagger-ui-express-4.1.4.tgz#8b814ad998b850a1cf90e71808d6d0a8a8daf742"
-  integrity sha1-i4FK2Zi4UKHPkOcYCNbQqKja90I=
-  dependencies:
-    swagger-ui-dist "^3.18.1"
 
 symbol-observable@1.2.0:
   version "1.2.0"
