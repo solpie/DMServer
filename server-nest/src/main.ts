@@ -14,6 +14,49 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
   app.enableCors();
+
+  //┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
+  //╎                 strapi proxy
+  //╎
+  //╎
+  //└╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘
+  const { createProxyMiddleware } = require('http-proxy-middleware');
+  /**
+   * @return {Boolean}
+   */
+  const filter = function(pathname, req) {
+    // console.log(pathname);
+    // return !pathname.match('^/ns'); //&& req.method === 'GET';
+    let is_proxy = true;
+
+    // if (pathname.includes('/content-manager/explorer/application')) {
+    if (pathname.includes('/content-manager/explorer/application::dm.dm')) {
+      Logger.log(`hook=>${pathname} => dmcat`);
+
+
+      is_proxy = false;
+    }
+
+    if (is_proxy)
+      Logger.log(
+        `proxy=>${process.env.STRAPI_PORT}${pathname}`,
+      );
+    return is_proxy;
+  };
+
+  app.use(
+    '/',
+    createProxyMiddleware(filter, {
+      target: `http://c-stg.liangle.com`,
+      // target: `http://localhost:${process.env.STRAPI_PORT}`,
+      ws: true,
+      pathRewrite: {
+        '^/api/remove/path': '/path', // remove base path
+        // '^/content-manager/explorer/application': '/dmcat', // remove base path
+      },
+      changeOrigin: true,
+    }),
+  );
   //┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
   //╎                 app start
   //╎
