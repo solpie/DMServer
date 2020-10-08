@@ -34,11 +34,14 @@ export class DmcatService {
             option['skip'] = query['_start'];
         return this.usersRepository.find(option);
     }
-    find_like(like: string, start: number = 0, end: number): Promise<DmEntity[]> {
-        return this.usersRepository.find({
+    find_like(like: string, start: number = 0, end: number, room_id = null): Promise<DmEntity[]> {
+        let option = {
             content: Like(like),
             created_at: Between(start, end)
-        });
+        }
+        if (room_id)
+            option[room_id] = room_id
+        return this.usersRepository.find(option);
     }
     async create(body: DmEntity) {
         body.created_at = new Date().getTime();
