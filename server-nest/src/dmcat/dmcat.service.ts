@@ -27,9 +27,11 @@ export class DmcatService {
             let a = query['_sort'].split(':');
             option['order'] = { [a[0]]: a[1] };
         }
-        option['limit'] = query['_limit'];
         // option['take'] = query['_limit'];
-        option['skip'] = query['_start'];
+        if (query['_limit'])
+            option['limit'] = query['_limit'];
+        if (query['_start'])
+            option['skip'] = query['_start'];
         return this.usersRepository.find(option);
     }
     find_like(like: string, start: number = 0, end: number): Promise<DmEntity[]> {

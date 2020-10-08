@@ -39,6 +39,15 @@ export class DmcatController {
             end_time = Infinity
         return await this.dmSrv.find_like(like, Number(start_time), end_time)
     }
+    @Post('/dmcat/query')
+    async post_dm_query(@Body() query: any) {
+        let { like, start_time, end_time } = query
+        // like  contain t  %t%
+        // MoreThanOrEqual
+        if (!end_time)
+            end_time = Infinity
+        return await this.dmSrv.find_like(like, Number(start_time), end_time)
+    }
     @Get('/dmcat/count')
     async get_dm_count2(@Query() query: any) {
         let count = await this.dmSrv.count();
