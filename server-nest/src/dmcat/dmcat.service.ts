@@ -99,6 +99,8 @@ export class DmcatService {
             this._stat_option_arr.forEach((so: StatOption) => {
                 if (dm.content.includes(so.key)) {
                     so.count++
+                    let io = global['io']
+                    io?.of('dmcat').emit("stat_new_dm", so)
                     Logger.log(`stat_new_dm ${dm.content}, ${so.key} count:${so.count}`, 'DmcatService');
                 }
             })

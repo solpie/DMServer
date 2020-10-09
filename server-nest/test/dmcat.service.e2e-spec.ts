@@ -25,15 +25,15 @@ describe('Dmcat', () => {
         return request(app.getHttpServer())
             .post('/dmcat/start-stat')
             .send({
-                stat_option_arr: [{
-                    key: '了',
-                    title: '1:选项1统计了 热词',
-                    count: 0
+                "stat_option_arr": [{
+                    "key": '了',
+                    "title": '1:选项1统计了 热词',
+                    "count": 0
                 },
                 {
-                    key: '666',
-                    title: '2:选项1统计2',
-                    count: 0
+                    "key": '666',
+                    "title": '2:选项1统计2',
+                    "count": 0
                 }],
                 room_id: '6881113512324844302',
                 updated_at: new Date().getTime(),

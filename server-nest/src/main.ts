@@ -9,6 +9,7 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+import { bootstrap_Dmcat } from './dmcat/dmcat.bootstrap';
 async function bootstrap() {
   // const app = await NestFactory.create(AppModule);
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -16,46 +17,8 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
   app.enableCors();
-
-  //┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
-  //╎                 strapi proxy
-  //╎
-  //╎
-  //└╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘
-  const { createProxyMiddleware } = require('http-proxy-middleware');
-  /**
-   * @return {Boolean}
-   */
-  const filter = function (pathname, req) {
-    let is_proxy = true;
-
-    // if (pathname.includes('/content-manager/explorer/application')) {
-    if (pathname.includes('/content-manager/explorer/application::dm.dm') ||
-      pathname.includes('/dmcat')) {
-      Logger.log(`hook=>${pathname} => dmcat`);
-      is_proxy = false;
-    }
-
-    if (is_proxy)
-      Logger.log(
-        `proxy=>${process.env.STRAPI_PORT}${pathname}`,
-      );
-    return is_proxy;
-  };
-
-  app.use(
-    '/',
-    createProxyMiddleware(filter, {
-      target: `http://c-stg.liangle.com`,
-      // target: `http://localhost:${process.env.STRAPI_PORT}`,
-      ws: true,
-      pathRewrite: {
-        '^/api/remove/path': '/path', // remove base path
-        // '^/content-manager/explorer/application': '/dmcat', // remove base path
-      },
-      changeOrigin: true,
-    }),
-  );
+  // strapi proxy
+  bootstrap_Dmcat(app)
   //┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
   //╎                 app start
   //╎
