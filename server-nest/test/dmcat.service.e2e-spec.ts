@@ -34,8 +34,9 @@ describe('Dmcat', () => {
                     key: '666',
                     title: '2:选项1统计2',
                     count: 0
-                }]
-                , room_id: '6881113512324844302',
+                }],
+                room_id: '6881113512324844302',
+                updated_at: new Date().getTime(),
                 start_time: 1602140190215
             })
             .end((err, res) => {

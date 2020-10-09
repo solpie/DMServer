@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Like, MoreThanOrEqual, Repository } from 'typeorm';
 import { DmEntity } from './dm.entity';
-interface StatOption {
+export interface StatOption {
     key: string
     title: string
     count: number
@@ -10,21 +10,22 @@ interface StatOption {
 @Injectable()
 export class DmcatService {
     async start_stat(body: any) {
-        let { stat_option_arr, room_id, start_time, end_time } = body
-        start_time = Number(start_time)
-        if (!end_time)
-            end_time = Infinity
-        else {
-            end_time = Number(end_time)
-        }
-        for (let stat_option of stat_option_arr) {
-            //
-            let so: StatOption = stat_option
-            so.count = await this.dmRepository.count({ room_id, created_at: Between(start_time, end_time), content: Like(`%${so.key}%`) })
-            Logger.log(`start stat ${so.key} - ${so.title}: ${so.count}`, 'DmcatService');
-            // console.log(`start stat ${so.key} - ${so.title}: ${so.count}`);
-
-
+        let { stat_option_arr, room_id, start_time, end_time, updated_at } = body
+        if (stat_option_arr.length) {
+            start_time = Number(start_time)
+            if (!end_time)
+                end_time = Infinity
+            else {
+                end_time = Number(end_time)
+            }
+            for (let stat_option of stat_option_arr) {
+                //
+                let so: StatOption = stat_option
+                so.count = await this.dmRepository.count({ room_id, created_at: Between(start_time, end_time), content: Like(`%${so.key}%`) })
+                Logger.log(`start stat ${so.key} - ${so.title}: ${so.count}`, 'DmcatService');
+                // console.log(`start stat ${so.key} - ${so.title}: ${so.count}`);
+            }
+            this._stat_option_arr = stat_option_arr
         }
         return { stat_option_arr }
     }
@@ -89,8 +90,23 @@ export class DmcatService {
     }
     async create(body: DmEntity) {
         this._last_room_id = body.room_id
+        this.stat_new_dm(body)
         body.created_at = new Date().getTime();
         return this.dmRepository.save(body);
+    }
+    stat_new_dm(dm: DmEntity) {
+        if (this._stat_option_arr.length) {
+            this._stat_option_arr.forEach((so: StatOption) => {
+                if (dm.content.includes(so.key)) {
+                    so.count++
+                    Logger.log(`stat_new_dm ${dm.content}, ${so.key} count:${so.count}`, 'DmcatService');
+                }
+            })
+        }
+
+    }
+    get_stat() {
+        return this._stat_option_arr
     }
     findOne(id: string): Promise<DmEntity> {
         return this.dmRepository.findOne(id);

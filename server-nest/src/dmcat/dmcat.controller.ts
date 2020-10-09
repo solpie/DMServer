@@ -62,4 +62,9 @@ export class DmcatController {
         let res = await this.dmSrv.start_stat(req.body)
         return { msg: 'sus', ...res }
     }
+
+    @Get('/dmcat/start-stat')
+    async _get_stat() {
+        return this.dmSrv.get_stat()
+    }
 }
