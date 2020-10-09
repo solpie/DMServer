@@ -9,20 +9,20 @@ export const bootstrap_Dmcat = (app: INestApplication) => {
     //└╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘
     let server = app.getHttpServer()
     // console.log(server);
-    // let io = require('socket.io')(server)
-    // // io.origins("*");
-    // io.origins('*:*')
-    // global['io'] = io
-    // let nsp = io.of('dmcat')
-    // nsp.on('connection', (socket: any) => {
-    //     Logger.log('/dmcat.io ws connected', "dmcat.io")
-    //     socket.on('join', (data: any) => {
-    //     })
-    // })
-    // // console.log(nsp);
-    // io.on('connection', function (socket: any) {
-    //     Logger.log('/ ws connected', "dmcat.io")
-    // })
+    let io = require('socket.io')(server)
+    // io.origins("*");
+    io.origins('*:*')
+    global['io'] = io
+    let nsp = io.of('dmcat-io')
+    nsp.on('connection', (socket: any) => {
+        Logger.log('/dmcat.io ws connected', "dmcat.io")
+        socket.on('join', (data: any) => {
+        })
+    })
+    // console.log(nsp);
+    io.on('connection', function (socket: any) {
+        Logger.log('/ ws connected', "dmcat.io")
+    })
     
     //┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
     //╎                 strapi proxy

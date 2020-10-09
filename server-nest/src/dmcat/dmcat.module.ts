@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DmEntity } from './dm.entity';
 import { DmcatController } from './dmcat.controller';
-import { DmcatGateway } from './dmcat.gateway';
 import { DmcatService } from './dmcat.service';
 
 @Module({
@@ -16,7 +15,7 @@ import { DmcatService } from './dmcat.service';
     , TypeOrmModule.forFeature([DmEntity])
   ],
   controllers: [DmcatController],
-  providers: [DmcatService, DmcatGateway],
+  providers: [DmcatService],
   exports: [DmcatService]
 })
 export class DmcatModule { }
