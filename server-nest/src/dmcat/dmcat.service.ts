@@ -74,7 +74,7 @@ export class DmcatService {
         }
         // option['take'] = query['_limit'];
         if (query['_limit'])
-            option['limit'] = query['_limit'];
+            option['take'] = query['_limit'];
         if (query['_start'])
             option['skip'] = query['_start'];
         return this.dmRepository.find(option);
