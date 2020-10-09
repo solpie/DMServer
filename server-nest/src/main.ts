@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import 'dotenv/config';
+
+
 const port = Number(process.env.PORT) || 3000;
 import {
   FastifyAdapter,
@@ -24,12 +26,12 @@ async function bootstrap() {
   /**
    * @return {Boolean}
    */
-  const filter = function(pathname, req) {
+  const filter = function (pathname, req) {
     let is_proxy = true;
 
     // if (pathname.includes('/content-manager/explorer/application')) {
     if (pathname.includes('/content-manager/explorer/application::dm.dm') ||
-    pathname.includes('/dmcat') ) {
+      pathname.includes('/dmcat')) {
       Logger.log(`hook=>${pathname} => dmcat`);
       is_proxy = false;
     }

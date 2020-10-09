@@ -1,6 +1,6 @@
 import { Param } from '@nestjs/common';
 import { Query } from '@nestjs/common';
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Request } from '@nestjs/common';
 import { Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Req } from '@nestjs/common/decorators/http/route-params.decorator';
 import { Logger } from '@nestjs/common/services';
@@ -30,6 +30,7 @@ export class DmcatController {
             return await this.dmSrv.find_by_strapi(query);
         }
     }
+
     @Get('/dmcat/query')
     async get_dm_query(@Query() query: any) {
         let { like, start_time, end_time } = query
@@ -54,5 +55,11 @@ export class DmcatController {
     async get_dm_count2(@Query() query: any) {
         let count = await this.dmSrv.count();
         return { count };
+    }
+
+    @Post('/dmcat/start-stat')
+    async _start_stat(@Req() req: Request) {
+        let res = await this.dmSrv.start_stat(req.body)
+        return { msg: 'sus', ...res }
     }
 }
