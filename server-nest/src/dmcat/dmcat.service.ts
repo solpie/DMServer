@@ -9,9 +9,11 @@ export interface StatOption {
 }
 @Injectable()
 export class DmcatService {
+    _last_stat_conf: any
     async start_stat(body: any) {
         let { stat_option_arr, room_id, start_time, end_time, updated_at } = body
         if (stat_option_arr.length) {
+            this._last_stat_conf = body
             start_time = Number(start_time)
             if (!end_time)
                 end_time = Infinity
@@ -108,7 +110,7 @@ export class DmcatService {
 
     }
     get_stat() {
-        return this._stat_option_arr
+        return { ...this._last_stat_conf, stat_option_arr: this._stat_option_arr }
     }
     findOne(id: string): Promise<DmEntity> {
         return this.dmRepository.findOne(id);
