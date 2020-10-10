@@ -65,4 +65,35 @@ export const bootstrap_Dmcat = (app: INestApplication) => {
             changeOrigin: true,
         }),
     );
+
+
+    const filter_yq = function (pathname, req) {
+        let is_proxy = true;
+        let hook_url_arr = ['/content-manager/explorer/application::dm.dm', '/dmcat', '/socket.io']
+        for (const path_ of hook_url_arr) {
+            if (pathname.includes(path_)) {
+                is_proxy = false
+                Logger.log(`hook=>${pathname} => dmcat`);
+                break
+            }
+        }
+        if (is_proxy)// goto strapi   target: `http://c-stg.liangle.com`
+            Logger.log(
+                `proxy=>${process.env.STRAPI_PORT}${pathname}`,
+            );
+        return is_proxy;
+    };
+    app.use(
+        '/',
+        createProxyMiddleware(filter_yq, {
+            target: `http://www.yuque.com`,
+            // target: `http://localhost:${process.env.STRAPI_PORT}`,
+            ws: true,
+            pathRewrite: {
+                '^/api/remove/path': '/path', // remove base path
+                // '^/content-manager/explorer/application': '/dmcat', // remove base path
+            },
+            changeOrigin: true,
+        }),
+    );
 }
