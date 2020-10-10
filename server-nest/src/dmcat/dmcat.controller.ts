@@ -57,16 +57,16 @@ export class DmcatController {
         return { count };
     }
     _j_url = 'http://192.168.1.252:8096'
-    @Get('/j')
+    @Get('/dmcat/j')
     _j(@Res() res) {
         res.status(302).redirect(this._j_url);
     }
-    @Post('/j')
+    @Post('/dmcat/j')
     _j1(@Body() body) {
         this._j_url = body['url']
         return { url: this._j_url }
     }
-    
+
     @Post('/dmcat/start-stat')
     async _start_stat(@Req() req: Request) {
         let res = await this.dmSrv.start_stat(req.body)
