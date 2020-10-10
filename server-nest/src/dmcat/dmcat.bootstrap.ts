@@ -13,7 +13,7 @@ export const bootstrap_Dmcat = (app: INestApplication) => {
     // io.origins("*");
     io.origins('*:*')
     let nsp = io.of('dmcat-io')
-    global['io'] = nsp
+    global['dmcat-io'] = nsp
     nsp.on('connection', (socket: any) => {
         Logger.log('/dmcat.io ws connected', "dmcat.io")
         // socket.on('join', (data: any) => {
