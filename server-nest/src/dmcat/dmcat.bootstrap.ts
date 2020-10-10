@@ -23,7 +23,7 @@ export const bootstrap_Dmcat = (app: INestApplication) => {
     io.on('connection', function (socket: any) {
         Logger.log('/ ws connected', "dmcat.io")
     })
-    
+
     //┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
     //╎                 strapi proxy
     //╎
@@ -36,7 +36,7 @@ export const bootstrap_Dmcat = (app: INestApplication) => {
      */
     const filter = function (pathname, req) {
         let is_proxy = true;
-        let hook_url_arr = ['/content-manager/explorer/application::dm.dm', '/dmcat']
+        let hook_url_arr = ['/content-manager/explorer/application::dm.dm', '/dmcat', '/socket.io']
         for (const path_ of hook_url_arr) {
             if (pathname.includes(path_)) {
                 is_proxy = false
