@@ -94,6 +94,10 @@ export class DmcatService {
         this._last_room_id = body.room_id
         this.stat_new_dm(body)
         body.created_at = new Date().getTime();
+
+        let io = global['dmcat-io']
+        io?.emit("wall", {msg:{un:body.user_name,cont:body.content}})
+        // Logger.log(`stat_new_dm ${dm.content}, ${so.key} count:${so.count}`, 'dmcat-io');
         return this.dmRepository.save(body);
     }
     stat_new_dm(dm: DmEntity) {
