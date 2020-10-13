@@ -63,13 +63,12 @@ export class DmcatController {
         let count = await this.dmSrv.count();
         return { count };
     }
-    @Get('/dmcat/git-pull')
+    @Post('/dmcat/git-pull')
     async get_git_pull(@Query() query: any) {
         // req localhost:5555
         var request = require('requestretry');
         request({
             url: 'http://localhost:5555/git-pull',
-            // The below parameters are specific to request-retry
             maxAttempts: 1,   // (default) try 5 times
             retryStrategy: request.RetryStrategies.HTTPOrNetworkError // (default) retry on 5xx or network errors
         }, function (err, response, body) {
@@ -79,6 +78,18 @@ export class DmcatController {
             }
         });
         return { msg: 'sus' }
+    }
+    @Get('/dmcat/git-log')
+    async get_git_log() {
+        const _txt = () => new Promise(resolve => {
+            var fs = require("fs");
+            fs.readFile("git-log.txt", 'utf-8', (err, data) => {
+                if (err) throw err;
+                console.log(data)
+                resolve(data)
+            });
+        })
+        return await _txt()
     }
     _j_url = 'http://192.168.1.252:8096'
     @Get('/dmcat/j')
