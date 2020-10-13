@@ -96,18 +96,19 @@ export class DmcatService {
         body.created_at = new Date().getTime();
 
         let io = global['dmcat-io']
-        io?.emit("wall", {msg:{un:body.user_name,cont:body.content}})
-        // Logger.log(`stat_new_dm ${dm.content}, ${so.key} count:${so.count}`, 'dmcat-io');
+        io?.emit("wall", { msg: { un: body.user_name, cont: body.content } })
         return this.dmRepository.save(body);
     }
     stat_new_dm(dm: DmEntity) {
         if (this._stat_option_arr.length) {
             this._stat_option_arr.forEach((so: StatOption) => {
-                if (dm.content.includes(so.key)) {
-                    so.count++
-                    let io = global['dmcat-io']
-                    io?.emit("stat_new_dm", so)
-                    Logger.log(`stat_new_dm ${dm.content}, ${so.key} count:${so.count}`, 'dmcat-io');
+                if (this._last_stat_conf.room_id && this._last_stat_conf.room_id === dm.room_id) {
+                    if (dm.content.includes(so.key)) {
+                        so.count++
+                        let io = global['dmcat-io']
+                        io?.emit("stat_new_dm", so)
+                        Logger.log(`stat_new_dm ${dm.content}, ${so.key} count:${so.count}`, 'dmcat-io');
+                    }
                 }
             })
         }
