@@ -45,7 +45,7 @@ export class DmcatController {
         let { room_id, start_time, end_time } = query
         if (!end_time)
             end_time = Infinity
-        return await this.dmSrv.stat_user(room_id, Number(start_time), Number(end_time))
+        return await this.dmSrv.stat_user(room_id, Number(start_time),end_time)
     }
     @Post('/dmcat/query')
     async post_dm_query(@Body() query: any) {

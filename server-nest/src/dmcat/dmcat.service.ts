@@ -95,8 +95,8 @@ export class DmcatService {
         let user_stat = {}
         for (let dm of dm_arr) {
             if (!user_stat[dm.user_id])
-                user_stat[dm.user_id] = 0
-            user_stat[dm.user_id]++
+                user_stat[dm.user_id] = { user_name: dm.user_name, count: 0 }
+            user_stat[dm.user_id].count++
         }
         return { msg: 'sus', user_stat }
     }
