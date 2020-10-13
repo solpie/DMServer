@@ -94,8 +94,8 @@ export class DmcatController {
     _j_url = 'http://192.168.1.252:8096'
 
     @Get('/dmcat/test')
-    _test(@Res() res) {
-        return { msg: "auto git pull on push to github1" }
+    _test() {
+        return { msg: "auto git pull on push to github 2" }
     }
 
     @Get('/dmcat/j')
