@@ -95,7 +95,7 @@ export class DmcatController {
 
     @Get('/dmcat/test')
     _test() {
-        return { msg: "auto git pull on push to github 2" }
+        return { msg: "auto git pull on push to github..." }
     }
 
     @Get('/dmcat/j')
