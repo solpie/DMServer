@@ -45,7 +45,7 @@ export class DmcatController {
         let { room_id, start_time, end_time } = query
         if (!end_time)
             end_time = Infinity
-        return await this.dmSrv.stat_user(room_id, Number(start_time),end_time)
+        return await this.dmSrv.stat_user(room_id, Number(start_time), end_time)
     }
     @Post('/dmcat/query')
     async post_dm_query(@Body() query: any) {
@@ -62,6 +62,23 @@ export class DmcatController {
     async get_dm_count2(@Query() query: any) {
         let count = await this.dmSrv.count();
         return { count };
+    }
+    @Get('/dmcat/git-pull')
+    async get_git_pull(@Query() query: any) {
+        // req localhost:5555
+        var request = require('requestretry');
+        request({
+            url: 'http://localhost:5555/git-pull',
+            // The below parameters are specific to request-retry
+            maxAttempts: 1,   // (default) try 5 times
+            retryStrategy: request.RetryStrategies.HTTPOrNetworkError // (default) retry on 5xx or network errors
+        }, function (err, response, body) {
+            // this callback will only be called when the request succeeded or after maxAttempts or on error
+            if (response) {
+                console.log('The number of request attempts: ' + response.attempts);
+            }
+        });
+        return { msg: 'sus' }
     }
     _j_url = 'http://192.168.1.252:8096'
     @Get('/dmcat/j')
