@@ -92,6 +92,10 @@ export class DmcatController {
         return await _txt()
     }
     _j_url = 'http://192.168.1.252:8096'
+    @Get('/dmcat/test')
+    _test(@Res() res) {
+        return { msg: "auto git pull on push to github" }
+    }
     @Get('/dmcat/j')
     _j(@Res() res) {
         res.status(302).redirect(this._j_url);
