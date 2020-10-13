@@ -90,6 +90,16 @@ export class DmcatService {
             option[room_id] = room_id
         return this.dmRepository.find(option);
     }
+    async stat_user(room_id: string, start: number = 0, end: number) {
+        let dm_arr = await this.dmRepository.find({ room_id, created_at: Between(start, end) })
+        let user_stat = {}
+        for (let dm of dm_arr) {
+            if (!user_stat[dm.user_id])
+                user_stat[dm.user_id] = 0
+            user_stat[dm.user_id]++
+        }
+        return { msg: 'sus', user_stat }
+    }
     async create(body: DmEntity) {
         this._last_room_id = body.room_id
         this.stat_new_dm(body)

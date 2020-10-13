@@ -40,6 +40,11 @@ export class DmcatController {
             end_time = Infinity
         return await this.dmSrv.find_like(like, Number(start_time), end_time)
     }
+    @Get('/dmcat/user')
+    async get_dm_user(@Query() query: any) {
+        let { room_id, start_time, end_time } = query
+        return await this.dmSrv.stat_user(room_id, Number(start_time), Number(end_time))
+    }
     @Post('/dmcat/query')
     async post_dm_query(@Body() query: any) {
         let { like, start_time, end_time, room_id } = query
