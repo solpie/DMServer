@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -67,6 +68,27 @@ public class Hook implements IXposedHookLoadPackage {
                 }
         );
     }
+
+    public void hook_api(XC_LoadPackage.LoadPackageParam loadPackageParam) {
+        Class<?> param1Class = XposedHelpers.findClass("com.ss.ugc.live.sdk.message.data.ProtoApiResult", loadPackageParam.classLoader);
+        XposedHelpers.findAndHookMethod(
+                "com.bytedance.android.livesdk.message.a.a", loadPackageParam.classLoader,
+                "a",
+                param1Class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        super.beforeHookedMethod(param);
+                        Object result = param.getResult();
+                        Log.i("@api", "hook:======api result===");
+                        List<Object> messages = (List<Object>) XposedHelpers.getObjectField(result, "messages");
+                        Log.i("@api", "message:======api result==="+messages.size());
+
+                    }
+                }
+        );
+    }
+
 
     public void hook_dm(XC_LoadPackage.LoadPackageParam loadPackageParam) {
         String methodName = "decode";
@@ -161,6 +183,7 @@ public class Hook implements IXposedHookLoadPackage {
         if (loadPackageParam.packageName.equals("com.ss.android.ugc.aweme")) {
             this.hook_dm(loadPackageParam);
             this.hook_dm2(loadPackageParam);
+            this.hook_api(loadPackageParam);
         }
     }
 }

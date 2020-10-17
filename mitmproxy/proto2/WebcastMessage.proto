@@ -1,0 +1,51 @@
+syntax = "proto2";
+message CommonMessageData{
+    optional string method=1;
+    optional uint64 msg_id =2;
+    optional uint64 room_id =3;
+    optional uint64 create_time =4;
+
+    optional int32 monitor = 5;
+    optional bool is_show_msg = 6;
+    optional string describe = 7;
+
+    optional bytes display_text = 8;
+    optional uint64 fold_type =9;
+    optional uint64 anchor_fold_type = 10;
+    
+}
+message WebcastRoomMessage{
+    repeated CommonMessageData baseMessage =1;
+    required string content = 2;
+    optional bool support_landscape = 3;
+}
+message WebcastMemberMessage{
+    repeated CommonMessageData baseMessage =1;
+    optional int32 member_count = 2;
+    optional bytes user = 3;
+    optional bool is_top_user = 4;
+    optional int32 action =5;
+    optional int32 top_user_no =6;
+    optional bytes operator =7;
+    optional bool is_set_to_admin = 8;
+    optional int32 rank_score = 9;
+    optional int32 enter_type = 10;
+    optional string action_description =11;
+    optional bytes anchor_display_text=12;
+    optional bytes enter_effect_config =13;
+    optional uint64 user_id = 14;
+    optional string pop_str = 15;
+    optional bytes background_image_v2 = 16;
+}
+
+message WebcastChatMessage{
+    repeated CommonMessageData baseMessage =1;
+    optional uint64 chat_id = 2;
+    optional string content =3;
+    optional bytes user = 4;
+    optional bool visible_to_sender=  5;
+    optional bytes background_image_v2 = 6;
+    optional string full_screen_text_color =  7;
+    optional bytes public_area_common =8;
+    optional bytes  gift_image =9;
+}

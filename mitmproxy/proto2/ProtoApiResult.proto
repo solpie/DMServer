@@ -1,0 +1,12 @@
+syntax = "proto2";
+message ProtoApiResult{
+    repeated message messages = 1;
+    optional string cursor = 2;
+    optional int32 fetch_interval = 3;
+    optional uint64 now = 4;
+    optional string internal_ext = 5;
+    message message{
+        optional string method = 1;
+        optional bytes payload = 2;
+    }
+}
