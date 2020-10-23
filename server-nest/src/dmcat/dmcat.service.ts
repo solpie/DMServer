@@ -45,7 +45,7 @@ export class DmcatService {
             if (type === 'vote' ||
                 type === 'pk' ||
                 type === 'stat') {
-                body.stat_option_arr = { ...stat_option_arr }
+                body.stat_option_arr = [...stat_option_arr]
                 this._last_stat_conf_map[type] = { ...body }
             }
         }
