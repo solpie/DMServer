@@ -17,7 +17,8 @@ export interface ConfBody {
 }
 @Injectable()
 export class DmcatService {
-    _last_stat_conf: any
+    // _last_stat_conf: any
+    _last_stat_type: string
     _last_stat_conf_map: Record<string, ConfBody> = {
         'pk': null,
         'vote': null,
@@ -26,7 +27,7 @@ export class DmcatService {
     async start_stat(body: any) {
         let { stat_option_arr, room_id, start_time, end_time, updated_at, type } = body
         if (stat_option_arr.length) {
-            this._last_stat_conf = body
+            // this._last_stat_conf = body
 
             start_time = Number(start_time)
             if (!end_time)
@@ -41,20 +42,22 @@ export class DmcatService {
                 Logger.log(`start stat ${so.key} - ${so.title}: ${so.count}`, 'DmcatService');
                 // console.log(`start stat ${so.key} - ${so.title}: ${so.count}`);
             }
-            this._stat_option_arr = stat_option_arr
+            // this._stat_option_arr = stat_option_arr
             if (type === 'vote' ||
                 type === 'pk' ||
                 type === 'stat') {
+                this._last_stat_type = type
                 body.stat_option_arr = [...stat_option_arr]
                 this._last_stat_conf_map[type] = { ...body }
             }
         }
         return { stat_option_arr, type, map: this._last_stat_conf_map }
     }
-
+    // 最新一条弹幕的房间
     _last_room_id: string
+    // 最新一条弹幕
     _last_dm: DmEntity
-    _stat_option_arr: StatOption[] = []
+    // _stat_option_arr: StatOption[] = []
     constructor(
         @InjectRepository(DmEntity)
         private dmRepository: Repository<DmEntity>,
@@ -130,18 +133,18 @@ export class DmcatService {
         return this.dmRepository.save(body);
     }
     stat_new_dm(dm: DmEntity) {
-        if (this._stat_option_arr.length) {
-            this._stat_option_arr.forEach((so: StatOption) => {
-                if (this._last_stat_conf.room_id && this._last_stat_conf.room_id === dm.room_id) {
-                    if (dm.content.includes(so.key)) {
-                        so.count++
-                        let io = global['dmcat-io']
-                        io?.emit("stat_new_dm", so)
-                        Logger.log(`stat_new_dm ${dm.content}, ${so.key} count:${so.count}`, 'dmcat-io');
-                    }
-                }
-            })
-        }
+        // if (this._stat_option_arr.length) {
+        //     this._stat_option_arr.forEach((so: StatOption) => {
+        //         if (this._last_stat_conf.room_id && this._last_stat_conf.room_id === dm.room_id) {
+        //             if (dm.content.includes(so.key)) {
+        //                 so.count++
+        //                 let io = global['dmcat-io']
+        //                 io?.emit("stat_new_dm", so)
+        //                 Logger.log(`stat_new_dm ${dm.content}, ${so.key} count:${so.count}`, 'dmcat-io');
+        //             }
+        //         }
+        //     })
+        // }
         for (const type in this._last_stat_conf_map) {
             const conf_body = this._last_stat_conf_map[type]
             if (conf_body && conf_body.stat_option_arr.length) {
@@ -166,7 +169,11 @@ export class DmcatService {
         return { msg: 'no type', type }
     }
     get_stat() {
-        return { ...this._last_stat_conf, stat_option_arr: this._stat_option_arr }
+        if (this._last_stat_type) {
+            let type = this._last_stat_type
+            return { ...this._last_stat_conf_map[type] }
+        }
+        return { msg: 'no _last_stat_type', stat_option_arr: [] }
     }
     findOne(id: string): Promise<DmEntity> {
         return this.dmRepository.findOne(id);
