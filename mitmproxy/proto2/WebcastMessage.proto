@@ -9,10 +9,252 @@ message CommonMessageData{
     optional bool is_show_msg = 6;
     optional string describe = 7;
 
-    optional bytes display_text = 8;
+    optional Text display_text = 8;
     optional uint64 fold_type =9;
     optional uint64 anchor_fold_type = 10;
     
+}
+message TextPieceUser{
+    // @SerializedName("user")
+
+    // /* renamed from: a  reason: collision with root package name */
+    // public User f108298a;
+    optional bytes user = 1;
+    // @SerializedName("with_colon")
+
+    // /* renamed from: b  reason: collision with root package name */
+    // public boolean f108299b;
+    optional bool with_colon = 2;
+
+}
+message TextPiece{
+    // @SerializedName("type")
+
+    // /* renamed from: a  reason: collision with root package name */
+    // public int f108287a;
+    optional bytes type =1;
+    // @SerializedName("format")
+
+    // /* renamed from: b  reason: collision with root package name */
+    // public i f108288b;
+    optional bytes format = 2;
+    // @SerializedName("string_value")
+
+    // /* renamed from: c  reason: collision with root package name */
+    // public String f108289c = "";
+    optional string string_value = 3;
+    // @SerializedName("user_value")
+
+    // /* renamed from: d  reason: collision with root package name */
+    // public o f108290d;
+    optional bytes user_value = 4;
+    // @SerializedName("gift_value")
+
+    // /* renamed from: e  reason: collision with root package name */
+    // public k f108291e;
+    optional bytes gift_value =5;
+    // @SerializedName("heart_value")
+    // public l f;
+    optional bytes heart_value =6;
+    
+    // @SerializedName("pattern_ref_value")
+    // public n g;
+    optional bytes pattern_ref_value =7;
+    // @SerializedName("image_value")
+    // public m h;
+    optional bytes image_value =8;
+
+}
+message TextFormat{
+    // @SerializedName("color")
+
+    // /* renamed from: a  reason: collision with root package name */
+    // public String f108282a;
+    optional string color = 1;
+    // @SerializedName("italic")
+
+    // /* renamed from: b  reason: collision with root package name */
+    // public boolean f108283b;
+    optional bool italic = 2;
+
+    // @SerializedName("weight")
+
+    // /* renamed from: c  reason: collision with root package name */
+    // public int f108284c;
+    optional int32 weight = 3;
+    
+    // @SerializedName("font_size")
+
+    // /* renamed from: d  reason: collision with root package name */
+    // public int f108285d;
+    optional int32 font_size = 4;
+    // @SerializedName("use_heigh_light_color")
+
+    // /* renamed from: e  reason: collision with root package name */
+    // public boolean f108286e;
+    optional bool use_heigh_light_color = 5;
+    // @SerializedName("use_remote_clor")
+    // public boolean f;
+    optional bool use_remote_clor = 6;
+    
+
+}
+message Text{
+    // @SerializedName("key")
+
+    // /* renamed from: a  reason: collision with root package name */
+    // public String f108278a;
+    optional string key = 1;
+
+    // @SerializedName("default_pattern")
+
+    // /* renamed from: b  reason: collision with root package name */
+    // public String f108279b;
+    optional string default_pattern = 2;
+
+    // @SerializedName("default_format")
+
+    // /* renamed from: c  reason: collision with root package name */
+    // public i f108280c;  TextFormat
+    optional bytes default_format = 3;
+
+    // @SerializedName("pieces")
+
+    // /* renamed from: d  reason: collision with root package name */
+    // public List<j> f108281d;
+    optional bytes pieces = 4;
+    // repeated TextPiece pieces = 4;
+}
+message User{
+    optional int32 adversary_authorization_info = 1;
+    // @SerializedName("adversary_user_status")
+    optional int32 adversaryUserStatus=2;
+    // @SerializedName("anchor_info")
+    optional bytes anchorInfo = 3;
+    // @SerializedName("webcast_anchor_level")
+    optional bytes  anchorLevel = 4;
+    // @SerializedName("author_stats")
+    optional bytes  authorInfo = 5;
+    // @SerializedName("authorization_info")
+    optional bytes  authorizationInfo=6;
+    // @SerializedName("avatar_border")
+    optional bytes avatarBorder=7;
+    // @SerializedName("avatar_large")
+    optional bytes  avatarLarge=8;
+    // @SerializedName("avatar_medium")
+    optional bytes avatarMedium =9;
+    // @SerializedName("avatar_thumb")
+    optional bytes avatarThumb =10;
+    // @SerializedName("avatar_url")
+    optional string avatarUrl =11;
+    // @SerializedName("bg_img_url")
+    optional string backgroundImgUrl =12;
+    // @SerializedName("badge_image_list")
+    optional bytes badgeImageList = 13;
+    // @SerializedName("birthday")
+    optional uint64 birthday = 14;
+    // @SerializedName("border")
+    optional bytes border=15;
+    // @SerializedName("city")
+    optional string city =16;
+    // @SerializedName("commerce_webcast_config_ids")
+    optional bytes commerceConfigIds = 17;
+    // @SerializedName("create_time")
+    optional uint64 createTime=18;
+    // @SerializedName("display_id")
+    optional string displayId=19;
+    // @SerializedName("with_car_management_permission")
+    optional bool enableCarManagementPermission =20;
+    // @SerializedName("with_commerce_permission")
+   optional bool enableShowCommerceSale=21;
+    // @SerializedName("encrypted_id")
+    optional string encryptedId = 22;
+    // @SerializedName("experience")
+   optional int32 experience=23;
+    // @SerializedName("ticket_count")
+   optional uint64 fanTicketCount=24;
+    // @SerializedName("fans_club")
+    optional bytes fansClub=25;
+    // @SerializedName("follow_info")
+    optional bytes followInfo =26;
+    // @SerializedName("brotherhood_info")
+    optional bytes fraternityInfo=27;
+    // @SerializedName("gender")
+    optional int32 gender=28;
+    // @SerializedName("id")
+    optional uint64 id=29;
+    // @SerializedName("id_str")
+    optional string idStr=30;
+    // @SerializedName("income_share_percent")
+    optional int32 incomeSharePercent=31;
+    // @SerializedName("verified")
+    optional bytes isVerified=33;
+    // @SerializedName("level")
+   optional int32 level=34;
+    // @SerializedName("link_mic_stats")
+    // int linkMicStats;
+    // @SerializedName("authentication_info")
+    // public AuthenticationInfo mAuthenticationInfo;
+    // @SerializedName("medal")
+    // ImageModel medal;
+    // @SerializedName("media_badge_image_list")
+    // public List<ImageModel> mediaBadgeImageList;
+    // @SerializedName("modify_time")
+    // long modifyTime;
+    // @SerializedName("new_real_time_icons")
+    // List<ImageModel> newUserBadges;
+    // @SerializedName("nickname")
+    optional string nickName = 41;
+    // @SerializedName("noble_info")
+    // NobleLevelInfo nobleLevelInfo;
+    // @SerializedName("own_room")
+    // a ownRoom;
+    // @SerializedName("total_recharge_diamond_count")
+    // long payScores = -1;
+    // @SerializedName("personal_card")
+    // ImageModel personalCard;
+    // @SerializedName("poi_info")
+    // PoiInfo poiInfo;
+    // @SerializedName("activity_reward")
+    // a rewardInfo;
+    // @SerializedName("room_auto_gift_thanks")
+    // boolean roomAutoGiftThanks;
+    // @SerializedName("sec_uid")
+    // String secUid;
+    // @SerializedName("secret")
+    // int secret;
+    // @SerializedName("share_qrcode_uri")
+    // String shareQrcodeUri;
+    // @SerializedName("short_id")
+    // long shortId;
+    // @SerializedName("signature")
+    // String signature;
+    // @SerializedName("special_id")
+    // String specialId;
+    // @SerializedName("status")
+    // int status;
+    // @SerializedName("telephone")
+    // String telephone;
+    // @SerializedName("top_fans")
+    // List<User> topFans;
+    // @SerializedName("top_vip_no")
+    // int topVipNo;
+    // @SerializedName("user_attr")
+    // l userAttr;
+    // @SerializedName("real_time_icons")
+    // List<ImageModel> userBadges;
+    // @SerializedName("pay_grade")
+    // n userHonor;
+    // @SerializedName("user_role")
+    // int userRole;
+    // @SerializedName("user_vip_info")
+    // UserVipInfo userVipInfo;
+    // @SerializedName("verified_content")
+    // String verifiedContent;
+    // @SerializedName("verified_reason")
+    // String verifiedReason;
+    // @SerializedName("xigua_info")
+    // o xiguaUserParams;
 }
 message WebcastRoomMessage{
     repeated CommonMessageData baseMessage =1;

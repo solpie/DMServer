@@ -115,7 +115,12 @@ export class DmcatController {
     }
 
     @Get('/dmcat/start-stat')
-    async _get_stat() {
-        return this.dmSrv.get_stat()
+    async _get_stat(@Query() query: any) {
+        const { type } = query
+        if (type) {
+            return this.dmSrv.get_stat_type(type)
+        }
+        else
+            return this.dmSrv.get_stat()
     }
 }

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto2',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x14WebcastMessage.proto\"\xd4\x01\n\x11\x43ommonMessageData\x12\x0e\n\x06method\x18\x01 \x01(\t\x12\x0e\n\x06msg_id\x18\x02 \x01(\x04\x12\x0f\n\x07room_id\x18\x03 \x01(\x04\x12\x13\n\x0b\x63reate_time\x18\x04 \x01(\x04\x12\x0f\n\x07monitor\x18\x05 \x01(\x05\x12\x13\n\x0bis_show_msg\x18\x06 \x01(\x08\x12\x10\n\x08\x64\x65scribe\x18\x07 \x01(\t\x12\x14\n\x0c\x64isplay_text\x18\x08 \x01(\x0c\x12\x11\n\tfold_type\x18\t \x01(\x04\x12\x18\n\x10\x61nchor_fold_type\x18\n \x01(\x04\"i\n\x12WebcastRoomMessage\x12\'\n\x0b\x62\x61seMessage\x18\x01 \x03(\x0b\x32\x12.CommonMessageData\x12\x0f\n\x07\x63ontent\x18\x02 \x02(\t\x12\x19\n\x11support_landscape\x18\x03 \x01(\x08\"\x85\x03\n\x14WebcastMemberMessage\x12\'\n\x0b\x62\x61seMessage\x18\x01 \x03(\x0b\x32\x12.CommonMessageData\x12\x14\n\x0cmember_count\x18\x02 \x01(\x05\x12\x0c\n\x04user\x18\x03 \x01(\x0c\x12\x13\n\x0bis_top_user\x18\x04 \x01(\x08\x12\x0e\n\x06\x61\x63tion\x18\x05 \x01(\x05\x12\x13\n\x0btop_user_no\x18\x06 \x01(\x05\x12\x10\n\x08operator\x18\x07 \x01(\x0c\x12\x17\n\x0fis_set_to_admin\x18\x08 \x01(\x08\x12\x12\n\nrank_score\x18\t \x01(\x05\x12\x12\n\nenter_type\x18\n \x01(\x05\x12\x1a\n\x12\x61\x63tion_description\x18\x0b \x01(\t\x12\x1b\n\x13\x61nchor_display_text\x18\x0c \x01(\x0c\x12\x1b\n\x13\x65nter_effect_config\x18\r \x01(\x0c\x12\x0f\n\x07user_id\x18\x0e \x01(\x04\x12\x0f\n\x07pop_str\x18\x0f \x01(\t\x12\x1b\n\x13\x62\x61\x63kground_image_v2\x18\x10 \x01(\x0c\"\xf5\x01\n\x12WebcastChatMessage\x12\'\n\x0b\x62\x61seMessage\x18\x01 \x03(\x0b\x32\x12.CommonMessageData\x12\x0f\n\x07\x63hat_id\x18\x02 \x01(\x04\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x0c\n\x04user\x18\x04 \x01(\x0c\x12\x19\n\x11visible_to_sender\x18\x05 \x01(\x08\x12\x1b\n\x13\x62\x61\x63kground_image_v2\x18\x06 \x01(\x0c\x12\x1e\n\x16\x66ull_screen_text_color\x18\x07 \x01(\t\x12\x1a\n\x12public_area_common\x18\x08 \x01(\x0c\x12\x12\n\ngift_image\x18\t \x01(\x0c'
+  serialized_pb=b'\n\x14WebcastMessage.proto\"\xdb\x01\n\x11\x43ommonMessageData\x12\x0e\n\x06method\x18\x01 \x01(\t\x12\x0e\n\x06msg_id\x18\x02 \x01(\x04\x12\x0f\n\x07room_id\x18\x03 \x01(\x04\x12\x13\n\x0b\x63reate_time\x18\x04 \x01(\x04\x12\x0f\n\x07monitor\x18\x05 \x01(\x05\x12\x13\n\x0bis_show_msg\x18\x06 \x01(\x08\x12\x10\n\x08\x64\x65scribe\x18\x07 \x01(\t\x12\x1b\n\x0c\x64isplay_text\x18\x08 \x01(\x0b\x32\x05.Text\x12\x11\n\tfold_type\x18\t \x01(\x04\x12\x18\n\x10\x61nchor_fold_type\x18\n \x01(\x04\"1\n\rTextPieceUser\x12\x0c\n\x04user\x18\x01 \x01(\x0c\x12\x12\n\nwith_colon\x18\x02 \x01(\x08\"\xac\x01\n\tTextPiece\x12\x0c\n\x04type\x18\x01 \x01(\x0c\x12\x0e\n\x06\x66ormat\x18\x02 \x01(\x0c\x12\x14\n\x0cstring_value\x18\x03 \x01(\t\x12\x12\n\nuser_value\x18\x04 \x01(\x0c\x12\x12\n\ngift_value\x18\x05 \x01(\x0c\x12\x13\n\x0bheart_value\x18\x06 \x01(\x0c\x12\x19\n\x11pattern_ref_value\x18\x07 \x01(\x0c\x12\x13\n\x0bimage_value\x18\x08 \x01(\x0c\"\x86\x01\n\nTextFormat\x12\r\n\x05\x63olor\x18\x01 \x01(\t\x12\x0e\n\x06italic\x18\x02 \x01(\x08\x12\x0e\n\x06weight\x18\x03 \x01(\x05\x12\x11\n\tfont_size\x18\x04 \x01(\x05\x12\x1d\n\x15use_heigh_light_color\x18\x05 \x01(\x08\x12\x17\n\x0fuse_remote_clor\x18\x06 \x01(\x08\"T\n\x04Text\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x17\n\x0f\x64\x65\x66\x61ult_pattern\x18\x02 \x01(\t\x12\x16\n\x0e\x64\x65\x66\x61ult_format\x18\x03 \x01(\x0c\x12\x0e\n\x06pieces\x18\x04 \x01(\x0c\"\xf0\x05\n\x04User\x12$\n\x1c\x61\x64versary_authorization_info\x18\x01 \x01(\x05\x12\x1b\n\x13\x61\x64versaryUserStatus\x18\x02 \x01(\x05\x12\x12\n\nanchorInfo\x18\x03 \x01(\x0c\x12\x13\n\x0b\x61nchorLevel\x18\x04 \x01(\x0c\x12\x12\n\nauthorInfo\x18\x05 \x01(\x0c\x12\x19\n\x11\x61uthorizationInfo\x18\x06 \x01(\x0c\x12\x14\n\x0c\x61vatarBorder\x18\x07 \x01(\x0c\x12\x13\n\x0b\x61vatarLarge\x18\x08 \x01(\x0c\x12\x14\n\x0c\x61vatarMedium\x18\t \x01(\x0c\x12\x13\n\x0b\x61vatarThumb\x18\n \x01(\x0c\x12\x11\n\tavatarUrl\x18\x0b \x01(\t\x12\x18\n\x10\x62\x61\x63kgroundImgUrl\x18\x0c \x01(\t\x12\x16\n\x0e\x62\x61\x64geImageList\x18\r \x01(\x0c\x12\x10\n\x08\x62irthday\x18\x0e \x01(\x04\x12\x0e\n\x06\x62order\x18\x0f \x01(\x0c\x12\x0c\n\x04\x63ity\x18\x10 \x01(\t\x12\x19\n\x11\x63ommerceConfigIds\x18\x11 \x01(\x0c\x12\x12\n\ncreateTime\x18\x12 \x01(\x04\x12\x11\n\tdisplayId\x18\x13 \x01(\t\x12%\n\x1d\x65nableCarManagementPermission\x18\x14 \x01(\x08\x12\x1e\n\x16\x65nableShowCommerceSale\x18\x15 \x01(\x08\x12\x13\n\x0b\x65ncryptedId\x18\x16 \x01(\t\x12\x12\n\nexperience\x18\x17 \x01(\x05\x12\x16\n\x0e\x66\x61nTicketCount\x18\x18 \x01(\x04\x12\x10\n\x08\x66\x61nsClub\x18\x19 \x01(\x0c\x12\x12\n\nfollowInfo\x18\x1a \x01(\x0c\x12\x16\n\x0e\x66raternityInfo\x18\x1b \x01(\x0c\x12\x0e\n\x06gender\x18\x1c \x01(\x05\x12\n\n\x02id\x18\x1d \x01(\x04\x12\r\n\x05idStr\x18\x1e \x01(\t\x12\x1a\n\x12incomeSharePercent\x18\x1f \x01(\x05\x12\x12\n\nisVerified\x18! \x01(\x0c\x12\r\n\x05level\x18\" \x01(\x05\x12\x10\n\x08nickName\x18) \x01(\t\"i\n\x12WebcastRoomMessage\x12\'\n\x0b\x62\x61seMessage\x18\x01 \x03(\x0b\x32\x12.CommonMessageData\x12\x0f\n\x07\x63ontent\x18\x02 \x02(\t\x12\x19\n\x11support_landscape\x18\x03 \x01(\x08\"\x85\x03\n\x14WebcastMemberMessage\x12\'\n\x0b\x62\x61seMessage\x18\x01 \x03(\x0b\x32\x12.CommonMessageData\x12\x14\n\x0cmember_count\x18\x02 \x01(\x05\x12\x0c\n\x04user\x18\x03 \x01(\x0c\x12\x13\n\x0bis_top_user\x18\x04 \x01(\x08\x12\x0e\n\x06\x61\x63tion\x18\x05 \x01(\x05\x12\x13\n\x0btop_user_no\x18\x06 \x01(\x05\x12\x10\n\x08operator\x18\x07 \x01(\x0c\x12\x17\n\x0fis_set_to_admin\x18\x08 \x01(\x08\x12\x12\n\nrank_score\x18\t \x01(\x05\x12\x12\n\nenter_type\x18\n \x01(\x05\x12\x1a\n\x12\x61\x63tion_description\x18\x0b \x01(\t\x12\x1b\n\x13\x61nchor_display_text\x18\x0c \x01(\x0c\x12\x1b\n\x13\x65nter_effect_config\x18\r \x01(\x0c\x12\x0f\n\x07user_id\x18\x0e \x01(\x04\x12\x0f\n\x07pop_str\x18\x0f \x01(\t\x12\x1b\n\x13\x62\x61\x63kground_image_v2\x18\x10 \x01(\x0c\"\xf5\x01\n\x12WebcastChatMessage\x12\'\n\x0b\x62\x61seMessage\x18\x01 \x03(\x0b\x32\x12.CommonMessageData\x12\x0f\n\x07\x63hat_id\x18\x02 \x01(\x04\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x0c\n\x04user\x18\x04 \x01(\x0c\x12\x19\n\x11visible_to_sender\x18\x05 \x01(\x08\x12\x1b\n\x13\x62\x61\x63kground_image_v2\x18\x06 \x01(\x0c\x12\x1e\n\x16\x66ull_screen_text_color\x18\x07 \x01(\t\x12\x1a\n\x12public_area_common\x18\x08 \x01(\x0c\x12\x12\n\ngift_image\x18\t \x01(\x0c'
 )
 
 
@@ -84,8 +84,8 @@ _COMMONMESSAGEDATA = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='display_text', full_name='CommonMessageData.display_text', index=7,
-      number=8, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"",
+      number=8, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -116,7 +116,510 @@ _COMMONMESSAGEDATA = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=25,
-  serialized_end=237,
+  serialized_end=244,
+)
+
+
+_TEXTPIECEUSER = _descriptor.Descriptor(
+  name='TextPieceUser',
+  full_name='TextPieceUser',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user', full_name='TextPieceUser.user', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='with_colon', full_name='TextPieceUser.with_colon', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=246,
+  serialized_end=295,
+)
+
+
+_TEXTPIECE = _descriptor.Descriptor(
+  name='TextPiece',
+  full_name='TextPiece',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='type', full_name='TextPiece.type', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='format', full_name='TextPiece.format', index=1,
+      number=2, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='string_value', full_name='TextPiece.string_value', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='user_value', full_name='TextPiece.user_value', index=3,
+      number=4, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='gift_value', full_name='TextPiece.gift_value', index=4,
+      number=5, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='heart_value', full_name='TextPiece.heart_value', index=5,
+      number=6, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='pattern_ref_value', full_name='TextPiece.pattern_ref_value', index=6,
+      number=7, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='image_value', full_name='TextPiece.image_value', index=7,
+      number=8, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=298,
+  serialized_end=470,
+)
+
+
+_TEXTFORMAT = _descriptor.Descriptor(
+  name='TextFormat',
+  full_name='TextFormat',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='color', full_name='TextFormat.color', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='italic', full_name='TextFormat.italic', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='weight', full_name='TextFormat.weight', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='font_size', full_name='TextFormat.font_size', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='use_heigh_light_color', full_name='TextFormat.use_heigh_light_color', index=4,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='use_remote_clor', full_name='TextFormat.use_remote_clor', index=5,
+      number=6, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=473,
+  serialized_end=607,
+)
+
+
+_TEXT = _descriptor.Descriptor(
+  name='Text',
+  full_name='Text',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='Text.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='default_pattern', full_name='Text.default_pattern', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='default_format', full_name='Text.default_format', index=2,
+      number=3, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='pieces', full_name='Text.pieces', index=3,
+      number=4, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=609,
+  serialized_end=693,
+)
+
+
+_USER = _descriptor.Descriptor(
+  name='User',
+  full_name='User',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='adversary_authorization_info', full_name='User.adversary_authorization_info', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='adversaryUserStatus', full_name='User.adversaryUserStatus', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='anchorInfo', full_name='User.anchorInfo', index=2,
+      number=3, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='anchorLevel', full_name='User.anchorLevel', index=3,
+      number=4, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='authorInfo', full_name='User.authorInfo', index=4,
+      number=5, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='authorizationInfo', full_name='User.authorizationInfo', index=5,
+      number=6, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='avatarBorder', full_name='User.avatarBorder', index=6,
+      number=7, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='avatarLarge', full_name='User.avatarLarge', index=7,
+      number=8, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='avatarMedium', full_name='User.avatarMedium', index=8,
+      number=9, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='avatarThumb', full_name='User.avatarThumb', index=9,
+      number=10, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='avatarUrl', full_name='User.avatarUrl', index=10,
+      number=11, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='backgroundImgUrl', full_name='User.backgroundImgUrl', index=11,
+      number=12, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='badgeImageList', full_name='User.badgeImageList', index=12,
+      number=13, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='birthday', full_name='User.birthday', index=13,
+      number=14, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='border', full_name='User.border', index=14,
+      number=15, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='city', full_name='User.city', index=15,
+      number=16, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='commerceConfigIds', full_name='User.commerceConfigIds', index=16,
+      number=17, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='createTime', full_name='User.createTime', index=17,
+      number=18, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='displayId', full_name='User.displayId', index=18,
+      number=19, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enableCarManagementPermission', full_name='User.enableCarManagementPermission', index=19,
+      number=20, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enableShowCommerceSale', full_name='User.enableShowCommerceSale', index=20,
+      number=21, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='encryptedId', full_name='User.encryptedId', index=21,
+      number=22, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='experience', full_name='User.experience', index=22,
+      number=23, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='fanTicketCount', full_name='User.fanTicketCount', index=23,
+      number=24, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='fansClub', full_name='User.fansClub', index=24,
+      number=25, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='followInfo', full_name='User.followInfo', index=25,
+      number=26, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='fraternityInfo', full_name='User.fraternityInfo', index=26,
+      number=27, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='gender', full_name='User.gender', index=27,
+      number=28, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='id', full_name='User.id', index=28,
+      number=29, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='idStr', full_name='User.idStr', index=29,
+      number=30, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='incomeSharePercent', full_name='User.incomeSharePercent', index=30,
+      number=31, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='isVerified', full_name='User.isVerified', index=31,
+      number=33, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='level', full_name='User.level', index=32,
+      number=34, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='nickName', full_name='User.nickName', index=33,
+      number=41, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=696,
+  serialized_end=1448,
 )
 
 
@@ -161,8 +664,8 @@ _WEBCASTROOMMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=239,
-  serialized_end=344,
+  serialized_start=1450,
+  serialized_end=1555,
 )
 
 
@@ -298,8 +801,8 @@ _WEBCASTMEMBERMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=347,
-  serialized_end=736,
+  serialized_start=1558,
+  serialized_end=1947,
 )
 
 
@@ -386,14 +889,20 @@ _WEBCASTCHATMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=739,
-  serialized_end=984,
+  serialized_start=1950,
+  serialized_end=2195,
 )
 
+_COMMONMESSAGEDATA.fields_by_name['display_text'].message_type = _TEXT
 _WEBCASTROOMMESSAGE.fields_by_name['baseMessage'].message_type = _COMMONMESSAGEDATA
 _WEBCASTMEMBERMESSAGE.fields_by_name['baseMessage'].message_type = _COMMONMESSAGEDATA
 _WEBCASTCHATMESSAGE.fields_by_name['baseMessage'].message_type = _COMMONMESSAGEDATA
 DESCRIPTOR.message_types_by_name['CommonMessageData'] = _COMMONMESSAGEDATA
+DESCRIPTOR.message_types_by_name['TextPieceUser'] = _TEXTPIECEUSER
+DESCRIPTOR.message_types_by_name['TextPiece'] = _TEXTPIECE
+DESCRIPTOR.message_types_by_name['TextFormat'] = _TEXTFORMAT
+DESCRIPTOR.message_types_by_name['Text'] = _TEXT
+DESCRIPTOR.message_types_by_name['User'] = _USER
 DESCRIPTOR.message_types_by_name['WebcastRoomMessage'] = _WEBCASTROOMMESSAGE
 DESCRIPTOR.message_types_by_name['WebcastMemberMessage'] = _WEBCASTMEMBERMESSAGE
 DESCRIPTOR.message_types_by_name['WebcastChatMessage'] = _WEBCASTCHATMESSAGE
@@ -405,6 +914,41 @@ CommonMessageData = _reflection.GeneratedProtocolMessageType('CommonMessageData'
   # @@protoc_insertion_point(class_scope:CommonMessageData)
   })
 _sym_db.RegisterMessage(CommonMessageData)
+
+TextPieceUser = _reflection.GeneratedProtocolMessageType('TextPieceUser', (_message.Message,), {
+  'DESCRIPTOR' : _TEXTPIECEUSER,
+  '__module__' : 'WebcastMessage_pb2'
+  # @@protoc_insertion_point(class_scope:TextPieceUser)
+  })
+_sym_db.RegisterMessage(TextPieceUser)
+
+TextPiece = _reflection.GeneratedProtocolMessageType('TextPiece', (_message.Message,), {
+  'DESCRIPTOR' : _TEXTPIECE,
+  '__module__' : 'WebcastMessage_pb2'
+  # @@protoc_insertion_point(class_scope:TextPiece)
+  })
+_sym_db.RegisterMessage(TextPiece)
+
+TextFormat = _reflection.GeneratedProtocolMessageType('TextFormat', (_message.Message,), {
+  'DESCRIPTOR' : _TEXTFORMAT,
+  '__module__' : 'WebcastMessage_pb2'
+  # @@protoc_insertion_point(class_scope:TextFormat)
+  })
+_sym_db.RegisterMessage(TextFormat)
+
+Text = _reflection.GeneratedProtocolMessageType('Text', (_message.Message,), {
+  'DESCRIPTOR' : _TEXT,
+  '__module__' : 'WebcastMessage_pb2'
+  # @@protoc_insertion_point(class_scope:Text)
+  })
+_sym_db.RegisterMessage(Text)
+
+User = _reflection.GeneratedProtocolMessageType('User', (_message.Message,), {
+  'DESCRIPTOR' : _USER,
+  '__module__' : 'WebcastMessage_pb2'
+  # @@protoc_insertion_point(class_scope:User)
+  })
+_sym_db.RegisterMessage(User)
 
 WebcastRoomMessage = _reflection.GeneratedProtocolMessageType('WebcastRoomMessage', (_message.Message,), {
   'DESCRIPTOR' : _WEBCASTROOMMESSAGE,

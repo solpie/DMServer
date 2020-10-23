@@ -55,8 +55,16 @@ public class Hook implements IXposedHookLoadPackage {
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                         Object result = param.getResult();
                         Log.i("@member", "hook:======result===");
-                        Object commonDataStr = XposedHelpers.getObjectField(result, "baseMessage");
-                        Log.i("@member", "hook: common " + commonDataStr);
+                        Object commonData = XposedHelpers.getObjectField(result, "baseMessage");
+                        Log.i("@member", "hook: common " + commonData);
+                        Object display_text =  XposedHelpers.getObjectField(commonData, "i");
+//                        Object default_pattern =  XposedHelpers.getObjectField(display_text, "f108279b");
+//                        Object default_format =  XposedHelpers.getObjectField(display_text, "f108280c");
+//                        Object pieces =  XposedHelpers.getObjectField(display_text, "f108281d");
+                        Log.i("@member", "hook: display_text " + display_text);
+//                        Log.i("@member", "hook: default_pattern " + default_pattern);
+//                        Log.i("@member", "hook: default_format " + default_format);
+//                        Log.i("@member", "hook: pieces " + pieces);
                         Object member = XposedHelpers.callMethod(result, "c");
 //                        Object user = XposedHelpers.getObjectField(result, "f104160c");
 
@@ -183,7 +191,7 @@ public class Hook implements IXposedHookLoadPackage {
         if (loadPackageParam.packageName.equals("com.ss.android.ugc.aweme")) {
             this.hook_dm(loadPackageParam);
             this.hook_dm2(loadPackageParam);
-            this.hook_api(loadPackageParam);
+//            this.hook_api(loadPackageParam);
         }
     }
 }

@@ -7,13 +7,27 @@ export interface StatOption {
     title: string
     count: number
 }
+export interface ConfBody {
+    stat_option_arr: StatOption[],
+    room_id: string,
+    start_time: any,
+    end_time: any,
+    updated_at: any,
+    type: 'pk' | 'vote' | 'stat'
+}
 @Injectable()
 export class DmcatService {
     _last_stat_conf: any
+    _last_stat_conf_map: Record<string, ConfBody> = {
+        'pk': null,
+        'vote': null,
+        'stat': null,
+    }
     async start_stat(body: any) {
-        let { stat_option_arr, room_id, start_time, end_time, updated_at } = body
+        let { stat_option_arr, room_id, start_time, end_time, updated_at, type } = body
         if (stat_option_arr.length) {
             this._last_stat_conf = body
+
             start_time = Number(start_time)
             if (!end_time)
                 end_time = Infinity
@@ -28,6 +42,11 @@ export class DmcatService {
                 // console.log(`start stat ${so.key} - ${so.title}: ${so.count}`);
             }
             this._stat_option_arr = stat_option_arr
+            if (Object.keys(this._last_stat_conf_map).includes[type]) {
+                //
+                body.stat_option_arr = stat_option_arr
+                this._last_stat_conf_map[type] = body
+            }
         }
         return { stat_option_arr }
     }
@@ -122,7 +141,28 @@ export class DmcatService {
                 }
             })
         }
+        for (const type in this._last_stat_conf_map) {
+            const conf_body = this._last_stat_conf_map[type]
+            if (conf_body.stat_option_arr.length) {
+                conf_body.stat_option_arr.forEach((so: StatOption) => {
+                    if (conf_body.room_id && conf_body.room_id === dm.room_id) {
+                        if (dm.content.includes(so.key)) {
+                            so.count++
+                            let io = global['dmcat-io']
+                            io?.emit("stat_new_dm", { ...so, type })
+                            Logger.log(`stat_new_dm ${dm.content}, ${so.key} count:${so.count}`, 'dmcat-io');
+                        }
+                    }
+                })
+            }
+        }
 
+    }
+    get_stat_type(type: string) {
+        if (this._last_stat_conf_map[type]) {
+            return { msg: 'sus', ...this._last_stat_conf_map[type] }
+        }
+        return { msg: 'no type', type }
     }
     get_stat() {
         return { ...this._last_stat_conf, stat_option_arr: this._stat_option_arr }
