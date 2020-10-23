@@ -42,13 +42,14 @@ export class DmcatService {
                 // console.log(`start stat ${so.key} - ${so.title}: ${so.count}`);
             }
             this._stat_option_arr = stat_option_arr
-            if (Object.keys(this._last_stat_conf_map).includes[type]) {
+            if (['pk', 'vote', 'stat'].includes[type]) {
+                // if (Object.keys(this._last_stat_conf_map).includes[type]) {
                 //
                 body.stat_option_arr = stat_option_arr
                 this._last_stat_conf_map[type] = body
             }
         }
-        return { stat_option_arr }
+        return { stat_option_arr, type }
     }
 
     _last_room_id: string
@@ -143,7 +144,7 @@ export class DmcatService {
         }
         for (const type in this._last_stat_conf_map) {
             const conf_body = this._last_stat_conf_map[type]
-            if (conf_body.stat_option_arr.length) {
+            if (conf_body && conf_body.stat_option_arr.length) {
                 conf_body.stat_option_arr.forEach((so: StatOption) => {
                     if (conf_body.room_id && conf_body.room_id === dm.room_id) {
                         if (dm.content.includes(so.key)) {
