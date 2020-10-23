@@ -45,11 +45,11 @@ export class DmcatService {
             if (['pk', 'vote', 'stat'].includes[type]) {
                 // if (Object.keys(this._last_stat_conf_map).includes[type]) {
                 //
-                body.stat_option_arr = stat_option_arr
-                this._last_stat_conf_map[type] = body
+                body.stat_option_arr = { ...stat_option_arr }
+                this._last_stat_conf_map[type] = { ...body }
             }
         }
-        return { stat_option_arr, type }
+        return { stat_option_arr, type, map: this._last_stat_conf_map }
     }
 
     _last_room_id: string
