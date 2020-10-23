@@ -42,10 +42,9 @@ export class DmcatService {
                 // console.log(`start stat ${so.key} - ${so.title}: ${so.count}`);
             }
             this._stat_option_arr = stat_option_arr
-            if (type === 'vote') {
-                // if (['pk', 'vote', 'stat'].includes[type]) {
-                // if (Object.keys(this._last_stat_conf_map).includes[type]) {
-                //
+            if (type === 'vote' ||
+                type === 'pk' ||
+                type === 'stat') {
                 body.stat_option_arr = { ...stat_option_arr }
                 this._last_stat_conf_map[type] = { ...body }
             }
