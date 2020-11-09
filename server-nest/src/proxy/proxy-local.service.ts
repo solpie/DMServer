@@ -5,7 +5,7 @@ export class ProxyLocalService {
         app.use(
             '/log',
             createProxyMiddleware(() => true, {
-                target: `http://localhost:1337`,
+                target: `http://localhost:8048`,
                 ws: true,
                 pathRewrite: {
                     '^/api/remove/path': '/path', // remove base path
