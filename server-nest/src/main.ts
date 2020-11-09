@@ -10,6 +10,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { bootstrap_Dmcat } from './dmcat/dmcat.bootstrap';
+import { ProxyLocalService } from './proxy/proxy-local.service';
 async function bootstrap() {
   // const app = await NestFactory.create(AppModule);
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -19,6 +20,7 @@ async function bootstrap() {
   app.enableCors();
   // strapi proxy
   bootstrap_Dmcat(app)
+  ProxyLocalService.setup(app)
   //┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
   //╎                 app start
   //╎
