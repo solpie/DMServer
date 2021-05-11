@@ -17,6 +17,15 @@ export interface ConfBody {
 }
 @Injectable()
 export class DmcatService {
+    async remove_arr(dm_doc_arr: any[]) {
+        let count = 0
+        for (let doc of dm_doc_arr) {
+
+            await this.remove(doc.id)
+            count++
+        }
+        return count
+    }
     // _last_stat_conf: any
     _last_stat_type: string
     _last_stat_conf_map: Record<string, ConfBody> = {
