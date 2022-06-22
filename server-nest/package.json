@@ -38,7 +38,7 @@
     "requestretry": "^4.1.1",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
-    "sqlite3": "^5.0.0",
+    "sqlite3": "^5.0.3",
     "typeorm": "^0.2.25"
   },
   "devDependencies": {
